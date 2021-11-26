@@ -13,10 +13,10 @@ const mapping = (array) => {
     return {
       id: game.id,
       name: game.name,
-      //realiseDate: game.released,
-      //rating: game.rating,
+      realiseDate: game.released,
+      rating: game.rating,
       gender: game.genres.map((g) => g.name),
-      //platforms: game.parent_platforms.map((p) => p.platform.name),
+      platforms: game.parent_platforms.map((p) => p.platform.name),
       background_img: game.background_image,
     };
   });

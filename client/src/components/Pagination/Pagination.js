@@ -1,19 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { pageRender } from "../Home/functionHelper";
-import Videogames from "../Videogames/Videogames";
-import { filterByPage } from "../../redux/actions/index";
-
-const Pagination = ({ videogamesLength, changeGames, page, gamesPerPage }) => {
-  const dispatch = useDispatch();
-  //const [pageNum, setPageNum] = useState(0);
-
-  /*function handleClick(e) {
-    //setPageNum(e.target.value);
-    console.log("1", e.target.value);
-    dispatch(filterByPage(e.target.value));
-  }*/
-
+const Pagination = ({
+  videogamesLength,
+  changeGames,
+  currentPage,
+  gamesPerPage,
+}) => {
   const pagesNumbers = [];
   let pageNumber = Math.ceil(videogamesLength / gamesPerPage);
   for (var i = 0; i < pageNumber; i++) {
@@ -25,7 +15,7 @@ const Pagination = ({ videogamesLength, changeGames, page, gamesPerPage }) => {
       <nav>
         <ul>
           {pagesNumbers?.map((number) => {
-            return number !== page ? (
+            return number !== currentPage ? (
               <button
                 key={number}
                 value={number}
@@ -46,11 +36,6 @@ const Pagination = ({ videogamesLength, changeGames, page, gamesPerPage }) => {
           })}
         </ul>
       </nav>
-
-      {/* {pageNum != 0 && (
-        <Videogames videoGames={pageRender(videogames, pageNum)} />
-      )}
-      {console.log(pageNum)} */}
     </div>
   );
 };

@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
   const { name } = req.query;
 
   if (name) {
-    console.log("back", name);
     const getGames = await getSomeGames(name);
     if (!getGames)
       return res.status(404).send({
@@ -29,7 +28,6 @@ router.get("/", async (req, res) => {
         });
   } else {
     const games = await listAllVideogames();
-    console.log(games);
     games
       ? res.status(200).send(games)
       : res

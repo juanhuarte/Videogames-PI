@@ -2,10 +2,15 @@ import {
   GET_ALL_VIDEOGAMES,
   GET_ALL_VIDEOGAMES_BY_NAME,
   CLEAN_FILTER,
+  ORDER_VIDEOGAMES,
+  GET_ALL_GENDERS,
+  FILTER_BY_GENRE,
 } from "../actions/index";
+import { orderBy, filterGenre } from "./helper";
 const initialState = {
   videogames: [],
   videogamesCopy: [],
+  genres: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -26,13 +31,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogamesCopy: [...state.videogames],
       };
+    case ORDER_VIDEOGAMES:
+      return {
+        ...state,
+        videogamesCopy: orderBy(state.videogamesCopy, action.payload),
+      };
+    case GET_ALL_GENDERS:
+      return {
+        ...state,
+        genres: [...action.payload],
+      };
+    case FILTER_BY_GENRE:
+      return {
+        ...state,
+        videogamesCopy: filterGenre(state.videogamesCopy, action.payload),
+      };
     default:
       return state;
   }
 }
-
-/*const filterPage = (array, payload) => {
-  return array.slice(15 * (payload - 1), 15 + 15 * (payload - 1));
-};*/
 
 export default rootReducer;

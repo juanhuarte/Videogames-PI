@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import React from "react";
 import { getAllVideogamesByName, cleanFilter } from "../../redux/actions/index";
 
-export default function SearchBar({ setPage }) {
+export default function SearchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
   const [input, setInput] = useState({ name: "" });
 
@@ -14,12 +14,13 @@ export default function SearchBar({ setPage }) {
   function onSubmit(event) {
     event.preventDefault();
     dispatch(getAllVideogamesByName(input.name));
-    setPage(1);
+    setCurrentPage(1);
   }
 
   function handleClick() {
     input.name = "";
     dispatch(cleanFilter());
+    setCurrentPage(1);
   }
 
   return (

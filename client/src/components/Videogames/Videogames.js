@@ -16,18 +16,3 @@ export default function Videogames({ videoGames }) {
     </div>
   );
 }
-
-/*
-{videogamesByName ? (aux = videogamesByName) : (aux = videoGames)}
-      {console.log(aux)}
-      {aux &&
-        aux.map((videogame) => (
-          <Videogame
-            key={videogame.id}
-            name={videogame.name}
-            img={videogame.background_img}
-            gender={videogame.gender}
-            id={videogame.id}
-          />
-        ))}
-*/
