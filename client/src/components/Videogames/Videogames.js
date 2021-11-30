@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Videogame from "../Videogame/Videogame";
 
 export default function Videogames({ videoGames }) {
@@ -5,13 +6,15 @@ export default function Videogames({ videoGames }) {
     <div>
       {videoGames &&
         videoGames.map((videogame) => (
-          <Videogame
-            key={videogame.id}
-            name={videogame.name}
-            img={videogame.background_img}
-            gender={videogame.gender}
-            id={videogame.id}
-          />
+          <NavLink to={`/videogame/${videogame.id}`}>
+            <Videogame
+              key={videogame.id}
+              name={videogame.name}
+              img={videogame.background_img}
+              gender={videogame.gender}
+              id={videogame.id}
+            />
+          </NavLink>
         ))}
     </div>
   );

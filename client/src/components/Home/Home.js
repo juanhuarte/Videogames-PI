@@ -66,7 +66,12 @@ export default function Home() {
         currentPage={currentPage}
         gamesPerPage={gamesPerPage}
       />
-      {/*<button onClick={() => (page === 1 ? page : setPage(page - 1))}>
+      <Videogames videoGames={currentVideogame} />
+    </div>
+  );
+}
+
+/*<button onClick={() => (page === 1 ? page : setPage(page - 1))}>
         Anterior
       </button>
       <button
@@ -77,8 +82,4 @@ export default function Home() {
         Siguiente
       </button>
 
-      <Videogames videoGames={pageRender(videogames, page)} /> */}
-      <Videogames videoGames={currentVideogame} />
-    </div>
-  );
-}
+      <Videogames videoGames={pageRender(videogames, page)} /> */

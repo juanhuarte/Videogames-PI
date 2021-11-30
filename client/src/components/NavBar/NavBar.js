@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
 export default function NavBar({
@@ -29,6 +30,9 @@ export default function NavBar({
           </option>
         ))}
       </select>
+      <NavLink to="/createVideogame">
+        <button>Create Videogame</button>
+      </NavLink>
     </div>
   );
 }

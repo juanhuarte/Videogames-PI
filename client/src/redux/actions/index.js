@@ -5,6 +5,8 @@ export const CLEAN_FILTER = "CLEAN_FILTER";
 export const ORDER_VIDEOGAMES = "ORDER_VIDEOGAMES";
 export const GET_ALL_GENDERS = "GET_ALL_GENDERS";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
+export const GET_VIDEOGAME_DETAILS = "GET_VIDEOGAME_DETAILS";
+export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 
 export function getAllVideogames() {
   return function (dispatch) {
@@ -59,5 +61,52 @@ export const filterByGenre = (genre) => (dispatch) =>
     type: FILTER_BY_GENRE,
     payload: genre,
   });
+
+export function getVideogameDetail(id) {
+  console.log("1", id);
+  return async function (dispatch) {
+    try {
+      const videogameDetails = await axios.get(
+        `http://localhost:3001/videogame/${id}`
+      );
+      dispatch({
+        type: GET_VIDEOGAME_DETAILS,
+        payload: videogameDetails.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function createVideogame({
+  name,
+  realiseDate,
+  rating,
+  description,
+  platforms,
+  genres,
+  background_img,
+}) {
+  return async function (dispatch) {
+    try {
+      const postVideogame = await axios.post(
+        "http://localhost:3001/videogame",
+        {
+          name,
+          realiseDate,
+          rating,
+          description,
+          platforms,
+          genres,
+          background_img,
+        }
+      );
+      return postVideogame;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 //export const filterByGenre = (genre) => console.log("actionn", genre);

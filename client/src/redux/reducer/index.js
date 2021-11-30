@@ -5,12 +5,15 @@ import {
   ORDER_VIDEOGAMES,
   GET_ALL_GENDERS,
   FILTER_BY_GENRE,
+  GET_VIDEOGAME_DETAILS,
+  CREATE_VIDEOGAME,
 } from "../actions/index";
 import { orderBy, filterGenre } from "./helper";
 const initialState = {
   videogames: [],
   videogamesCopy: [],
   genres: [],
+  videogameDetails: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -46,6 +49,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         videogamesCopy: filterGenre(state.videogamesCopy, action.payload),
       };
+    case GET_VIDEOGAME_DETAILS:
+      return {
+        ...state,
+        videogameDetails: action.payload,
+      };
+    case CREATE_VIDEOGAME:
+      return { ...state };
     default:
       return state;
   }
