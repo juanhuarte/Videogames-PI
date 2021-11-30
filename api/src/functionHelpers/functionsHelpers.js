@@ -3,9 +3,9 @@
 function limitLengthArray(arr) {
   if (arr.length > 15) {
     let first15Games = arr.slice(0, 15);
-    return mapping(first15Games);
+    return first15Games;
   }
-  return mapping(arr);
+  return arr;
 }
 
 const mapping = (array) => {
