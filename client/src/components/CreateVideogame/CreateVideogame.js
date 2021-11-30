@@ -7,6 +7,7 @@ import {
   getAllGenders,
 } from "../../redux/actions/index";
 import List from "../List/List";
+import { NavLink } from "react-router-dom";
 
 export default function CreateVideogame() {
   const [input, setInput] = useState({
@@ -63,8 +64,8 @@ export default function CreateVideogame() {
     if (validation === 0) readyToDispatch = true;
     if (readyToDispatch === true) {
       dispatch(createVideogame(input));
-      //dispatch(getAllVideogames());
-      //dispatch(getAllGenders());
+      dispatch(getAllVideogames()); // despacho esta accion para que se actualice el array donde tengo todos los juegos(los creados y los de la api)
+      dispatch(getAllGenders());
       setInput({ ...input, redirect: true });
       setInputFullfilled(true);
       readyToDispatch = false;
@@ -158,6 +159,9 @@ export default function CreateVideogame() {
 
         <button type="submit">Create</button>
       </form>
+      <NavLink to="/home">
+        <button>X</button>
+      </NavLink>
     </div>
   );
 }
