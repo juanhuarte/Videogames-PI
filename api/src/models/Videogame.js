@@ -1,6 +1,6 @@
 //const { DataTypes } = require('sequelize');
 const Sequelize = require("sequelize");
-const { UUID, STRING, TEXT, ARRAY, INTEGER } = Sequelize.DataTypes;
+const { UUID, STRING, TEXT, ARRAY, INTEGER, UUIDV4 } = Sequelize.DataTypes;
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -8,12 +8,14 @@ module.exports = (sequelize) => {
   sequelize.define("videogame", {
     id: {
       type: UUID,
+      defaultValue: UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
     name: {
       type: STRING,
       allowNull: false,
+      unique: true,
     },
     description: {
       type: TEXT,
@@ -33,19 +35,6 @@ module.exports = (sequelize) => {
     },
     background_img: {
       type: STRING,
-    },
-  });
-
-  sequelize.define("gender", {
-    id: {
-      type: INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: STRING,
-      allowNull: false,
     },
   });
 };

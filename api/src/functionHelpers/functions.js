@@ -1,12 +1,10 @@
 const axios = require("axios");
 const { mapping, limitLengthArray } = require("./functionsHelpers");
 const { Gender, Videogame } = require("../db.js");
-const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 const { API_KEY } = process.env;
 
 async function listAllVideogames() {
-  //console.log("1", API_KEY);
   try {
     let allPromise = [];
     for (var i = 1; i < 6; i++) {
@@ -15,7 +13,6 @@ async function listAllVideogames() {
       );
     }
     return await Promise.all(allPromise).then((resolve) => {
-      //console.log(resolve);
       // flat quita un nivel del array
       return resolve.map((dato) => mapping(dato.data.results)).flat(); // en resolve voy a tener las respuestas del llamado a la api( van a ser 5) y luego tengo que hacer un map para sacar la data de cada respuesta de la api y por ultimo otro map para traer la data que me importa del juego
     });
@@ -68,7 +65,11 @@ async function getGenres() {
       name: element.name,
     };
   });
-  Gender.bulkCreate(genders);
+  genders.map((genre) => {
+    Gender.findOrCreate({
+      where: { name: genre.name },
+    });
+  });
 }
 
 const createVideogames = async (
@@ -78,35 +79,21 @@ const createVideogames = async (
   rating,
   platforms,
   background_img,
-  gender
+  genres
 ) => {
   console.log(name, description);
-  if (
-    name &&
-    description &&
-    realiseDate &&
-    rating &&
-    platforms &&
-    background_img
-  ) {
-    try {
-      let [videogame, created] = await Videogame.findOrCreate({
-        where: { name },
-        defaults: {
-          id: uuidv4(),
-          description,
-          realiseDate,
-          rating,
-          platforms,
-          background_img,
-        },
-      });
-      if (created) await videogame.addGender(gender);
-      else return "error";
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
+  try {
+    let videogame = await Videogame.create({
+      name,
+      description,
+      realiseDate,
+      rating,
+      platforms,
+      background_img,
+    });
+    await videogame.addGender(genres);
+  } catch (error) {
+    console.log(error);
     return "error";
   }
 };
