@@ -13,25 +13,6 @@ export default function List({ itemToSelect, itemsList, selectHandler }) {
             </option>
           ))}
         </select>
-        {/* {itemToSelect === "genres" ? (
-          <select name={itemToSelect} onInput={selectHandler}>
-            <option>-----</option>
-            {itemsList?.map((item, i) => (
-              <option value={item.id} key={i}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        ) : (
-          <select name={itemToSelect} onInput={selectHandler}>
-            <option>-----</option>
-            {itemsList?.map((item, i) => (
-              <option value={item.name} key={i}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        )} */}
       </label>
     </div>
   );

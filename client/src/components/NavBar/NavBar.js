@@ -6,10 +6,15 @@ export default function NavBar({
   sort,
   genres,
   handleFilterGenres,
+  filterGenre,
+  setFilterGenre,
 }) {
   return (
     <div>
-      <SearchBar setCurrentPage={setCurrentPage} />
+      <SearchBar
+        setCurrentPage={setCurrentPage}
+        setFilterGenre={setFilterGenre}
+      />
       <select onChange={(e) => sort(e)}>
         <option disabled selected>
           Order By
@@ -19,17 +24,23 @@ export default function NavBar({
         <option value="best"> Best Rating </option>
         <option value="worst"> Worst Rating </option>
       </select>
+
       <select onChange={(e) => handleFilterGenres(e)}>
         <option disabled selected>
           Genres
         </option>
         <option value="allGenres"> All Genres </option>
+        <option value="createdVideogames"> Created Games </option>
         {genres?.map((genre) => (
           <option key={genre.id} value={`${genre.name}`}>
             {`${genre.name}`}
           </option>
         ))}
       </select>
+      {filterGenre?.map((element, i) => (
+        <li key={i}>{element}</li>
+      ))}
+
       <NavLink to="/createVideogame">
         <button>Create Videogame</button>
       </NavLink>

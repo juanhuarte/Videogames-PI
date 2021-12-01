@@ -27,6 +27,12 @@ export const orderBy = (array, payload) => {
 
 export const filterGenre = (arr, genre) => {
   if (genre === "allGenres") return arr;
+  if (genre === "createdVideogames") {
+    let videogamesCreated = arr?.filter(
+      (videogame) => videogame.id.length > 10
+    );
+    return videogamesCreated;
+  }
   let videogamesByGenre = arr?.filter((videogameGenre) =>
     videogameGenre.gender.includes(genre)
   );

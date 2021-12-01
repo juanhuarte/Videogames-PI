@@ -19,7 +19,9 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage, setGamesPerPage] = useState(15);
   const [order, setOrder] = useState("");
-  const [filterGenre, setFilterGenre] = useState("");
+  // ESTE FUNCA
+  //const [filterGenre, setFilterGenre] = useState("");
+  const [filterGenre, setFilterGenre] = useState([]);
 
   let lastGame = currentPage * gamesPerPage;
   let firstGame = lastGame - gamesPerPage;
@@ -40,12 +42,19 @@ export default function Home() {
     setCurrentPage(1);
     setOrder(event.target.value);
   };
+  // ESTE FUNCA
+  /*const handleFilterGenres = (e) => {
+    e.preventDefault();
+    dispatch(filterByGenre(e.target.value));
+    setCurrentPage(1);
+    setFilterGenre(e.target.value);
+  };*/
 
   const handleFilterGenres = (e) => {
     e.preventDefault();
     dispatch(filterByGenre(e.target.value));
     setCurrentPage(1);
-    setFilterGenre(e.target.value);
+    setFilterGenre([...filterGenre, e.target.value]);
   };
 
   return (
@@ -59,6 +68,8 @@ export default function Home() {
         sort={handleSort}
         genres={genres}
         handleFilterGenres={handleFilterGenres}
+        filterGenre={filterGenre}
+        setFilterGenre={setFilterGenre}
       />
       <Pagination
         videogamesLength={videogames.length}
