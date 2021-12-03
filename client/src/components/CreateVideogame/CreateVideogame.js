@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions/index";
 import List from "../List/List";
 import { NavLink } from "react-router-dom";
+import styles from "./CreateVideogame.module.css";
 
 export default function CreateVideogame() {
   const [input, setInput] = useState({
@@ -21,7 +22,7 @@ export default function CreateVideogame() {
     redirect: false,
   });
   const [inputFullfilled, setInputFullfilled] = useState(false);
-
+  const [readyToDispatch, setReadyToDispatch] = useState(false);
   const platforms = [
     { name: "PC" },
     { name: "PlayStation 1" },
@@ -38,7 +39,7 @@ export default function CreateVideogame() {
   ];
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
-  let readyToDispatch = false;
+  // let readyToDispatch = false;
   const handleChange = (event) => {
     if (event.target.name === "genres") {
       setInput({
@@ -53,22 +54,28 @@ export default function CreateVideogame() {
       });
       event.target.value = "";
     } else setInput({ ...input, [event.target.name]: event.target.value });
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
     let validation = 0;
     for (let atribute of Object.keys(input)) {
       if (input[atribute].length === 0) validation++;
     }
-    if (validation === 0) readyToDispatch = true;
+    if (input.background_img.length >= 0) validation--;
+    if (validation === 0) setReadyToDispatch(true);
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    // let validation = 0;
+    // for (let atribute of Object.keys(input)) {
+    //   if (input[atribute].length === 0) validation++;
+    // }
+    // if (validation === 0) readyToDispatch = true;
     if (readyToDispatch === true) {
       dispatch(createVideogame(input));
       dispatch(getAllVideogames()); // despacho esta accion para que se actualice el array donde tengo todos los juegos(los creados y los de la api)
       dispatch(getAllGenders());
       setInput({ ...input, redirect: true });
       setInputFullfilled(true);
-      readyToDispatch = false;
+      setReadyToDispatch(false);
       console.log("input", input);
     } else {
       alert("all fields must be completed");
@@ -100,6 +107,7 @@ export default function CreateVideogame() {
           onChange={handleChange}
           value={input.name}
         />
+        <p>Name is required</p>
         <label>Realise Date: </label>
         <input
           name="realiseDate"
@@ -107,6 +115,7 @@ export default function CreateVideogame() {
           onChange={handleChange}
           value={input.realiseDate}
         />
+        <p>Name is required</p>
         <label>Rating: </label>
         <input
           name="rating"
@@ -114,13 +123,16 @@ export default function CreateVideogame() {
           onChange={handleChange}
           value={input.rating}
         />
+        <p>Name is required</p>
         <label>Description: </label>
         <textarea
+          className={styles.textarea}
           type="description"
           name="description"
           onChange={handleChange}
           value={input.description}
         />
+        <p>Name is required</p>
         <label>Background Image: </label>
         <input
           name="background_img"
@@ -128,6 +140,7 @@ export default function CreateVideogame() {
           onChange={handleChange}
           value={input.background_img}
         />
+        <p>Name is required</p>
         <div>
           <List
             itemToSelect="genres"
@@ -136,10 +149,12 @@ export default function CreateVideogame() {
           />
           {genres?.map((genre, i) =>
             input.genres.includes(genre.id) ? (
-              <li key={i}>
-                {genre.name}
-                <button onClick={() => handleDelete(genre.id)}>X</button>
-              </li>
+              <div className={styles.list}>
+                <li key={i}>
+                  {genre.name}
+                  <button onClick={() => handleDelete(genre.id)}>X</button>
+                </li>
+              </div>
             ) : null
           )}
         </div>
@@ -150,14 +165,24 @@ export default function CreateVideogame() {
             selectHandler={handleChange}
           />
           {input.platforms?.map((platform, i) => (
-            <li key={i}>
-              {platform}
-              <button onClick={() => handleDeletePlatforms(platform)}>X</button>
-            </li>
+            <div className={styles.list}>
+              <li key={i}>
+                {platform}
+                <button onClick={() => handleDeletePlatforms(platform)}>
+                  X
+                </button>
+              </li>
+            </div>
           ))}
         </div>
 
-        <button type="submit">Create</button>
+        <button
+          className={styles.create}
+          disabled={!readyToDispatch}
+          type="submit"
+        >
+          Create
+        </button>
       </form>
       <NavLink to="/home">
         <button>X</button>

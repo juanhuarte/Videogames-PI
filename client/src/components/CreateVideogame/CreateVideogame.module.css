@@ -1,0 +1,14 @@
+.list {
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 14px;
+  list-style: none;
+}
+
+.create {
+  cursor: not-allowed;
+}
+
+.textarea {
+  resize: none;
+}
