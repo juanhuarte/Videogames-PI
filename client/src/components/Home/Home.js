@@ -11,6 +11,9 @@ import React from "react";
 import Videogames from "../Videogames/Videogames";
 import Pagination from "../Pagination/Pagination";
 import NavBar from "../NavBar/NavBar";
+import FilterAndSort from "../FilterAndSort/FilterAndSort";
+import styles from "./Home.module.css";
+import oldGame from "../../Images/oldGame.jpg";
 
 export default function Home() {
   const videogames = useSelector((state) => state.videogamesCopy);
@@ -57,40 +60,28 @@ export default function Home() {
     setFilterGenre([...filterGenre, e.target.value]);
   };
 
-  return (
-    <div>
-      <NavLink to="/">
-        <button>Landing</button>
-      </NavLink>
-      <h1>Listado de Videogames</h1>
-      <NavBar
-        setCurrentPage={setCurrentPage}
+  return videogames.length ? (
+    <div className={styles.home}>
+      {/* <div className={styles.bkg} /> */}
+
+      <NavBar setCurrentPage={setCurrentPage} setFilterGenre={setFilterGenre} />
+      <FilterAndSort
         sort={handleSort}
         genres={genres}
         handleFilterGenres={handleFilterGenres}
         filterGenre={filterGenre}
-        setFilterGenre={setFilterGenre}
       />
+      <Videogames videoGames={currentVideogame} />
       <Pagination
         videogamesLength={videogames.length}
         changeGames={changeGames}
         currentPage={currentPage}
         gamesPerPage={gamesPerPage}
       />
-      <Videogames videoGames={currentVideogame} />
     </div>
+  ) : filterGenre.length ? (
+    <h1>No existen juego con esos filtros</h1>
+  ) : (
+    <h1>Loading</h1>
   );
 }
-
-/*<button onClick={() => (page === 1 ? page : setPage(page - 1))}>
-        Anterior
-      </button>
-      <button
-        onClick={() =>
-          page === Math.ceil(videogames.length / 15) ? page : setPage(page + 1)
-        }
-      >
-        Siguiente
-      </button>
-
-      <Videogames videoGames={pageRender(videogames, page)} /> */

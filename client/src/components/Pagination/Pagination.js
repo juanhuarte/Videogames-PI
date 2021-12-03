@@ -1,3 +1,5 @@
+import styles from "./Pagination.module.css";
+
 const Pagination = ({
   videogamesLength,
   changeGames,
@@ -11,8 +13,8 @@ const Pagination = ({
   }
 
   return (
-    <div>
-      <nav>
+    <div className={styles.grid}>
+      <nav className={styles.pagination}>
         <ul>
           {pagesNumbers?.map((number) => {
             return number !== currentPage ? (

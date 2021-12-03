@@ -1,0 +1,27 @@
+.home {
+  background-image: url("../../Images/oldGame.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  /* display: grid; */
+  grid-column: 1 / 6;
+  grid-row: 1 / 5;
+}
+
+/* .bkg {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background-color: #77777770;
+} */
+
+/* .container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+} */

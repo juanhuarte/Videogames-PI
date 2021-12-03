@@ -30,12 +30,13 @@ export default function SearchBar({ setCurrentPage, setFilterGenre }) {
         <input
           name="name"
           type="text"
+          placeholder="Search Videogame"
           onChange={handleChange}
           value={input.name}
         />
-        <button type="submit">Buscar</button>
+        <button type="submit">Search</button>
       </form>
-      <button onClick={handleClick}>Limpiar Filtro</button>
+      <button onClick={handleClick}>Clean Filter</button>
     </div>
   );
 }
