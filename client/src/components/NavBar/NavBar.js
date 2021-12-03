@@ -5,9 +5,11 @@ import styles from "./NavBar.module.css";
 export default function NavBar({ setCurrentPage, setFilterGenre }) {
   return (
     <div className={styles.navbar}>
-      <div className={styles.name}>
+      {/* <div className={styles.name}> */}
+      <NavLink className={styles.name} to="/">
         <h3>Videogames</h3>
-      </div>
+      </NavLink>
+      {/* </div> */}
       <div className={styles.search}>
         <SearchBar
           setCurrentPage={setCurrentPage}
@@ -15,11 +17,11 @@ export default function NavBar({ setCurrentPage, setFilterGenre }) {
         />
       </div>
       <div className={styles.links}>
-        <NavLink to="/">
+        {/* <NavLink to="/">
           <button className={styles.landing}>Landing</button>
-        </NavLink>
-        <NavLink to="/createVideogame">
-          <button className={styles.create}>Create Videogame</button>
+        </NavLink> */}
+        <NavLink className={styles.create} to="/createVideogame">
+          <h3>Create Videogame</h3>
         </NavLink>
       </div>
     </div>

@@ -19,6 +19,7 @@ const Pagination = ({
           {pagesNumbers?.map((number) => {
             return number !== currentPage ? (
               <button
+                className={styles.btn}
                 key={number}
                 value={number}
                 onClick={(e) => changeGames(e.target.value)}
@@ -27,7 +28,7 @@ const Pagination = ({
               </button>
             ) : (
               <button
-                //className = {estilos del boton seleccionado}
+                className={styles.btnselected}
                 key={number}
                 value={number}
                 onClick={(e) => changeGames(e.target.value)}

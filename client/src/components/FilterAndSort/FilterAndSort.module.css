@@ -9,6 +9,7 @@
 
 .sort {
   grid-column: 2/3;
+  margin-left: 100px;
 }
 
 .filter {
@@ -17,4 +18,9 @@
 
 .li {
   grid-column: 4/6;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  color: var(--primary-font-color);
+  list-style: none;
 }

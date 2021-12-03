@@ -6,29 +6,43 @@
 }
 
 .name {
-  text-transform: uppercase;
   letter-spacing: 5px;
   font-size: 20px;
   grid-column: 2/3;
-  margin-top: 10px;
+  width: 50%;
 }
 
 .links {
   justify-content: space-around;
   align-items: center;
   grid-column: 5/6;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
-.landing,
 .create {
   letter-spacing: 1px;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .search {
   letter-spacing: 3px;
   grid-column: 3/5;
   margin-top: 30px;
+}
+
+.name:hover {
+  transform: scale(1.1);
+}
+
+.links:hover {
+  transform: scale(1.1);
+}
+
+.name,
+.create {
+  text-transform: uppercase;
+  color: var(--primary-font-color);
+  text-decoration: none;
+  padding-top: 10px;
 }
