@@ -8,9 +8,7 @@ const router = Router();
 
 router.get("/:idVideogame", async (req, res) => {
   const { idVideogame } = req.params;
-  console.log("2", idVideogame);
   const getGameById = await findVideogameById(idVideogame);
-  console.log("3", getGameById);
   getGameById
     ? res.status(200).send(getGameById)
     : res

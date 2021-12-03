@@ -47,7 +47,7 @@ const getSomeGames = async (gameName) => {
 
 const findVideogameById = async (id) => {
   try {
-    if (id < 10) {
+    if (id.length < 10) {
       const apiCall = await axios.get(
         `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
       );
@@ -57,7 +57,7 @@ const findVideogameById = async (id) => {
         name: videogame.name,
         realiseDate: videogame.released,
         rating: videogame.rating,
-        description: videogame.description,
+        description: videogame.description_raw,
         gender: videogame.genres.map((g) => g.name),
         platforms: videogame.parent_platforms.map((p) => p.platform.name),
         background_img: videogame.background_image,
