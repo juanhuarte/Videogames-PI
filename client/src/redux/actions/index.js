@@ -108,5 +108,3 @@ export function createVideogame({
     }
   };
 }
-
-//export const filterByGenre = (genre) => console.log("actionn", genre);
