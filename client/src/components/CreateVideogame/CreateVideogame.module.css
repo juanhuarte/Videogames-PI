@@ -44,10 +44,16 @@
 }
 
 .list {
-  letter-spacing: 3px;
-  font-weight: bold;
+  letter-spacing: 1px;
   font-size: 14px;
+  font-weight: 600;
   list-style: none;
+  color: black;
+  padding-left: 15px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .createbtn {
@@ -89,31 +95,34 @@
 
 .desc {
   display: grid;
-  grid-row: 4/8;
+  grid-row: 3/7;
   grid-column: 1/3;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .inputname {
   grid-row: 1/2;
   grid-column: 1/3;
   display: grid;
+  margin-bottom: 5px;
 }
 
 .inputdate {
-  grid-row: 2/4;
+  grid-row: 2/3;
   grid-column: 1/2;
   display: grid;
 }
 
 .inputrating {
-  grid-row: 2/4;
+  grid-row: 2/3;
   grid-column: 2/3;
   display: grid;
 }
 
 .inputbkg {
   display: grid;
-  grid-row: 8/9;
+  grid-row: 7/8;
   grid-column: 1/3;
 }
 
@@ -127,7 +136,7 @@
 } */
 
 .sel {
-  grid-row: 9/10;
+  grid-row: 8/9;
   grid-column: 1/2;
   display: flex;
   justify-content: center;
@@ -136,20 +145,20 @@
 }
 
 .selgenres {
-  grid-row: 10/11;
+  grid-row: 9/11;
   grid-column: 1/2;
   border-color: black;
   background-color: var(--primary-font-color);
   border-style: solid;
   border-radius: 0.5rem;
   width: 16.5vw;
-  height: 4rem;
+  height: 6rem;
   overflow-y: scroll;
 }
 
 .platform {
   /* display: grid; */
-  grid-row: 9/10;
+  grid-row: 8/9;
   grid-column: 2/3;
   display: flex;
   justify-content: center;
@@ -158,14 +167,14 @@
 }
 
 .selplat {
-  grid-row: 10/11;
+  grid-row: 9/11;
   grid-column: 2/3;
   border-color: black;
   background-color: var(--primary-font-color);
   border-style: solid;
   border-radius: 0.5rem;
   width: 16.5vw;
-  height: 4rem;
+  height: 6rem;
   overflow-y: scroll;
 }
 
@@ -175,6 +184,7 @@
 .inputb,
 .textarea {
   position: relative;
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
   border-color: black;
@@ -185,7 +195,7 @@
   /* border-color: transparent; */
   border-radius: 0.5rem;
   box-sizing: border-box;
-  /* padding: 0.5rem 4rem 0.5rem 0.5rem; */
+  padding: 0.5rem 4rem 0.5rem 0.5rem;
 }
 
 .inputn {
@@ -239,8 +249,26 @@
   align-items: flex-start;
 }
 
-.btn {
+.btnclose {
   cursor: pointer;
+  font-size: 1.5rem;
+  color: red;
+  padding: 0.25rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: transparent;
+
+  transition: 250ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnclose:hover {
+  color: var(--primary-font-color);
+  background-color: red;
 }
 
 .imgcont {

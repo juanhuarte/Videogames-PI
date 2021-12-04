@@ -10,6 +10,7 @@ import List from "../List/List";
 import { NavLink } from "react-router-dom";
 import styles from "./CreateVideogame.module.css";
 import { validationFunc } from "./validationFunc";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function CreateVideogame() {
   const [input, setInput] = useState({
@@ -129,7 +130,7 @@ export default function CreateVideogame() {
             )}
           </div>
           <div className={styles.inputdate}>
-            <label className={styles.label}>Realise Date: </label>
+            {/* <label className={styles.label}>Realise Date: </label> */}
             <input
               className={
                 inputFullfilled.clicked && errors.realiseDate
@@ -148,7 +149,7 @@ export default function CreateVideogame() {
             )}
           </div>
           <div className={styles.inputrating}>
-            <label className={styles.label}>Rating: </label>
+            {/* <label className={styles.label}>Rating: </label> */}
             <input
               className={
                 inputFullfilled.clicked && errors.rating
@@ -215,10 +216,13 @@ export default function CreateVideogame() {
             {genres?.map((genre, i) =>
               input.genres.includes(genre.id) ? (
                 <div className={styles.list}>
-                  <li key={i}>
-                    {genre.name}
-                    <button onClick={() => handleDelete(genre.id)}>X</button>
-                  </li>
+                  <li key={i}>{genre.name}</li>
+                  <button
+                    className={styles.btnclose}
+                    onClick={() => handleDelete(genre.id)}
+                  >
+                    <IoCloseCircleOutline />
+                  </button>
                 </div>
               ) : null
             )}
@@ -237,12 +241,13 @@ export default function CreateVideogame() {
           <div className={styles.selplat}>
             {input.platforms?.map((platform, i) => (
               <div className={styles.list}>
-                <li key={i}>
-                  {platform}
-                  <button onClick={() => handleDeletePlatforms(platform)}>
-                    X
-                  </button>
-                </li>
+                <li key={i}>{platform}</li>
+                <button
+                  className={styles.btnclose}
+                  onClick={() => handleDeletePlatforms(platform)}
+                >
+                  <IoCloseCircleOutline />
+                </button>
               </div>
             ))}
             {inputFullfilled.clicked && errors.platforms && (
@@ -262,7 +267,9 @@ export default function CreateVideogame() {
         <div className={styles.rigth}>
           <div className={styles.closebtn}>
             <NavLink to="/home">
-              <button className={styles.btn}>X</button>
+              <button className={styles.btnclose}>
+                <IoCloseCircleOutline />
+              </button>
             </NavLink>
           </div>
           <div className={styles.imgcont}>
