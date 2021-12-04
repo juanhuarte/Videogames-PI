@@ -1,3 +1,48 @@
+.createvg {
+  background-image: url(../../Images/joystick.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+
+  /* overflow-x: hidden; */
+}
+
+.bkg {
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #6c757d; */
+  backdrop-filter: blur(8px);
+}
+
+.container {
+  width: 60vw;
+  height: 80vh;
+  position: absolute;
+  margin: 10vh 20vw;
+  overflow: hidden;
+  top: 0;
+  border-radius: 1.5rem;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 1rem;
+  background-color: rgba(63, 60, 60, 0.7);
+  display: grid;
+  grid-template-columns: repeat(3, 20vw);
+  grid-template-rows: repeat(11, 1fr);
+  /* gap: 10px; */
+  /* margin: 10px; */
+}
+
+.form {
+  grid-column: 1/3;
+  grid-row: 1/12;
+  display: grid;
+  margin: 20px;
+}
+
 .list {
   letter-spacing: 3px;
   font-weight: bold;
@@ -5,29 +50,214 @@
   list-style: none;
 }
 
+.createbtn {
+  grid-column: 1/3;
+  grid-row: 11/12;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
 .create {
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
+  /* grid-column: 1/3;
+  grid-row: 11/12; */
+  /* display: grid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-font-color);
+  color: var(--third-color-btn);
+  /* text-transform: uppercase; */
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  padding: 0.75em 1.5em;
+  height: 5px;
+  width: 200px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0.5em;
+  cursor: pointer;
 }
 
 .textarea {
   resize: none;
+  width: 35vw;
 }
 
-.notfulfilled {
-  border-color: red;
+.desc {
+  display: grid;
+  grid-row: 4/8;
+  grid-column: 1/3;
 }
 
-.input {
+.inputname {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  display: grid;
+}
+
+.inputdate {
+  grid-row: 2/4;
+  grid-column: 1/2;
+  display: grid;
+}
+
+.inputrating {
+  grid-row: 2/4;
+  grid-column: 2/3;
+  display: grid;
+}
+
+.inputbkg {
+  display: grid;
+  grid-row: 8/9;
+  grid-column: 1/3;
+}
+
+/* .genres {
+  
+  grid-row: 9/11;
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+} */
+
+.sel {
+  grid-row: 9/10;
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 20px;
+}
+
+.selgenres {
+  grid-row: 10/11;
+  grid-column: 1/2;
+  border-color: black;
+  background-color: var(--primary-font-color);
+  border-style: solid;
+  border-radius: 0.5rem;
+  width: 16.5vw;
+  height: 4rem;
+  overflow-y: scroll;
+}
+
+.platform {
+  /* display: grid; */
+  grid-row: 9/10;
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 20px;
+}
+
+.selplat {
+  grid-row: 10/11;
+  grid-column: 2/3;
+  border-color: black;
+  background-color: var(--primary-font-color);
+  border-style: solid;
+  border-radius: 0.5rem;
+  width: 16.5vw;
+  height: 4rem;
+  overflow-y: scroll;
+}
+
+.inputn,
+.inputd,
+.inputr,
+.inputb,
+.textarea {
   position: relative;
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
   border-color: black;
   border-style: solid;
   background-color: var(--primary-font-color);
-  width: 400px;
-  height: 2rem;
+  /* width: 400px;
+  height: 2rem; */
   /* border-color: transparent; */
   border-radius: 0.5rem;
   box-sizing: border-box;
-  padding: 0.5rem 4rem 0.5rem 0.5rem;
+  /* padding: 0.5rem 4rem 0.5rem 0.5rem; */
+}
+
+.inputn {
+  width: 35vw;
+  height: 2rem;
+}
+
+.inputd {
+  width: 16.5vw;
+  height: 2rem;
+}
+
+.inputr {
+  width: 16.5vw;
+  height: 2rem;
+}
+
+.inputb {
+  width: 35vw;
+  height: 2rem;
+  margin-top: 10px;
+}
+
+.label {
+  width: 15vw;
+}
+
+.notfulfilled {
+  border-color: red;
+  width: 35vw;
+  height: 2rem;
+}
+
+.notfulfilledw {
+  border-color: red;
+  width: 15vw;
+  height: 2rem;
+}
+
+.rigth {
+  display: grid;
+  grid-column: 3/4;
+  grid-row: 1/12;
+}
+
+.closebtn {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.imgcont {
+  display: grid;
+  grid-column: 3/4;
+  grid-row: 4/10;
+  border-color: black;
+  border-style: solid;
+  border-radius: 0.5rem;
+  width: 15vw;
+  height: 250px;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
 }

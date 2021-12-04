@@ -22,7 +22,10 @@ export default function CreateVideogame() {
     background_img: "",
     redirect: false,
   });
-  const [inputFullfilled, setInputFullfilled] = useState(false);
+  const [inputFullfilled, setInputFullfilled] = useState({
+    boolean: false,
+    clicked: false,
+  });
   const [readyToDispatch, setReadyToDispatch] = useState(false);
   const [errors, setErrors] = useState({});
   const platforms = [
@@ -43,13 +46,13 @@ export default function CreateVideogame() {
   const genres = useSelector((state) => state.genres);
   // let readyToDispatch = false;
   const handleChange = (event) => {
-    if (event.target.name === "genres") {
+    if (event.target.name === "Genres") {
       setInput({
         ...input,
         genres: [...input.genres, parseInt(event.target.value)],
       });
       event.target.value = "";
-    } else if (event.target.name === "platforms") {
+    } else if (event.target.name === "Platforms") {
       setInput({
         ...input,
         platforms: [...input.platforms, event.target.value],
@@ -78,11 +81,12 @@ export default function CreateVideogame() {
       dispatch(getAllVideogames()); // despacho esta accion para que se actualice el array donde tengo todos los juegos(los creados y los de la api)
       dispatch(getAllGenders());
       setInput({ ...input, redirect: true });
-      setInputFullfilled(true);
+      setInputFullfilled({ ...inputFullfilled, boolean: true });
       setReadyToDispatch(false);
       console.log("input", input);
     } else {
-      alert("all fields must be completed");
+      // alert("all fields must be completed");
+      setInputFullfilled({ ...inputFullfilled, clicked: true });
     }
   };
 
@@ -99,117 +103,179 @@ export default function CreateVideogame() {
       platforms: input.platforms?.filter((platform) => platform !== name),
     });
   }
-  return inputFullfilled === true ? (
+  return inputFullfilled.boolean === true ? (
     <Redirect to="/home" />
   ) : (
-    <div>
-      <form onSubmit={onSubmit}>
-        <label>Name: </label>
-        <input
-          className={errors.name ? styles.notfulfilled : styles.input}
-          name="name"
-          type="text"
-          onChange={handleChange}
-          value={input.name}
-        />
-        {errors.name && <p className={styles.notfulfilled}>Name is required</p>}
-
-        <label>Realise Date: </label>
-        <input
-          className={errors.realiseDate ? styles.notfulfilled : styles.input}
-          name="realiseDate"
-          type="date"
-          onChange={handleChange}
-          value={input.realiseDate}
-        />
-        {errors.realiseDate && (
-          <p className={styles.notfulfilled}>Realise Date is required</p>
-        )}
-        <label>Rating: </label>
-        <input
-          className={errors.rating ? styles.notfulfilled : styles.input}
-          name="rating"
-          type="text"
-          onChange={handleChange}
-          value={input.rating}
-        />
-        {errors.rating && (
-          <p className={styles.notfulfilled}>Rating is required</p>
-        )}
-        <label>Description: </label>
-        <textarea
-          className={errors.description ? styles.notfulfilled : styles.textarea}
-          type="description"
-          name="description"
-          onChange={handleChange}
-          value={input.description}
-        />
-        {errors.description && (
-          <p className={styles.notfulfilled}>Description is required</p>
-        )}
-        <label>Background Image: </label>
-        <input
-          className={errors.background_img ? styles.notfulfilled : styles.input}
-          name="background_img"
-          type="text"
-          onChange={handleChange}
-          value={input.background_img}
-        />
-        {errors.background_img && (
-          <p className={styles.notfulfilled}>Background is required</p>
-        )}
-        <div>
-          <List
-            itemToSelect="genres"
-            itemsList={genres}
-            selectHandler={handleChange}
-          />
-          {genres?.map((genre, i) =>
-            input.genres.includes(genre.id) ? (
+    <div className={styles.createvg}>
+      <div className={styles.bkg} />
+      <div className={styles.container}>
+        <form onSubmit={onSubmit} className={styles.form}>
+          {/* <label>Name: </label> */}
+          <div className={styles.inputname}>
+            <input
+              className={
+                inputFullfilled.clicked && errors.name
+                  ? styles.notfulfilled
+                  : styles.inputn
+              }
+              name="name"
+              type="text"
+              onChange={handleChange}
+              value={input.name}
+              placeholder="Name"
+            />
+            {inputFullfilled.clicked && errors.name && (
+              <p className={styles.notfulfilledLabel}>Name is required</p>
+            )}
+          </div>
+          <div className={styles.inputdate}>
+            <label className={styles.label}>Realise Date: </label>
+            <input
+              className={
+                inputFullfilled.clicked && errors.realiseDate
+                  ? styles.notfulfilledw
+                  : styles.inputd
+              }
+              name="realiseDate"
+              type="date"
+              onChange={handleChange}
+              value={input.realiseDate}
+            />
+            {inputFullfilled.clicked && errors.realiseDate && (
+              <p className={styles.notfulfilledLabel}>
+                Realise Date is required
+              </p>
+            )}
+          </div>
+          <div className={styles.inputrating}>
+            <label className={styles.label}>Rating: </label>
+            <input
+              className={
+                inputFullfilled.clicked && errors.rating
+                  ? styles.notfulfilledw
+                  : styles.inputr
+              }
+              name="rating"
+              type="text"
+              onChange={handleChange}
+              value={input.rating}
+              placeholder="Rating"
+            />
+            {inputFullfilled.clicked && errors.rating && (
+              <p className={styles.notfulfilledLabel}>Rating is required</p>
+            )}
+            {/* <label>Description: </label> */}
+          </div>
+          <div className={styles.desc}>
+            <textarea
+              className={
+                inputFullfilled.clicked && errors.description
+                  ? styles.notfulfilled
+                  : styles.textarea
+              }
+              type="description"
+              name="description"
+              onChange={handleChange}
+              value={input.description}
+              placeholder="Description"
+            />
+            {inputFullfilled.clicked && errors.description && (
+              <p className={styles.notfulfilledLabel}>
+                Description is required
+              </p>
+            )}
+            {/* <label>Background Image: </label> */}
+          </div>
+          <div className={styles.inputbkg}>
+            <input
+              className={
+                inputFullfilled.clicked && errors.background_img
+                  ? styles.notfulfilled
+                  : styles.inputb
+              }
+              name="background_img"
+              type="text"
+              onChange={handleChange}
+              value={input.background_img}
+              placeholder="Background Image"
+            />
+            {inputFullfilled.clicked && errors.background_img && (
+              <p className={styles.notfulfilledLabel}>Background is required</p>
+            )}
+          </div>
+          {/* <div className={styles.genres}> */}
+          <div className={styles.sel}>
+            <List
+              itemToSelect="Genres"
+              itemsList={genres}
+              selectHandler={handleChange}
+            />
+          </div>
+          <div className={styles.selgenres}>
+            {genres?.map((genre, i) =>
+              input.genres.includes(genre.id) ? (
+                <div className={styles.list}>
+                  <li key={i}>
+                    {genre.name}
+                    <button onClick={() => handleDelete(genre.id)}>X</button>
+                  </li>
+                </div>
+              ) : null
+            )}
+            {inputFullfilled.clicked && errors.genres && (
+              <p className={styles.notfulfilledLabel}>Genre is required</p>
+            )}
+          </div>
+          {/* </div> */}
+          <div className={styles.platform}>
+            <List
+              itemToSelect="Platforms"
+              itemsList={platforms}
+              selectHandler={handleChange}
+            />
+          </div>
+          <div className={styles.selplat}>
+            {input.platforms?.map((platform, i) => (
               <div className={styles.list}>
                 <li key={i}>
-                  {genre.name}
-                  <button onClick={() => handleDelete(genre.id)}>X</button>
+                  {platform}
+                  <button onClick={() => handleDeletePlatforms(platform)}>
+                    X
+                  </button>
                 </li>
               </div>
-            ) : null
-          )}
-          {errors.genres && (
-            <p className={styles.notfulfilled}>Genre is required</p>
-          )}
+            ))}
+            {inputFullfilled.clicked && errors.platforms && (
+              <p className={styles.notfulfilledLabel}>Platform is required</p>
+            )}
+          </div>
+          <div className={styles.createbtn}>
+            <button
+              className={styles.create}
+              // disabled={!readyToDispatch}
+              type="submit"
+            >
+              Create
+            </button>
+          </div>
+        </form>
+        <div className={styles.rigth}>
+          <div className={styles.closebtn}>
+            <NavLink to="/home">
+              <button className={styles.btn}>X</button>
+            </NavLink>
+          </div>
+          <div className={styles.imgcont}>
+            {input.background_img.length > 0 && (
+              <img
+                className={styles.img}
+                src={input.background_img}
+                alt="Image"
+              />
+            )}
+          </div>
         </div>
-        <div>
-          <List
-            itemToSelect="platforms"
-            itemsList={platforms}
-            selectHandler={handleChange}
-          />
-          {input.platforms?.map((platform, i) => (
-            <div className={styles.list}>
-              <li key={i}>
-                {platform}
-                <button onClick={() => handleDeletePlatforms(platform)}>
-                  X
-                </button>
-              </li>
-            </div>
-          ))}
-          {errors.platforms && (
-            <p className={styles.notfulfilled}>Platform is required</p>
-          )}
-        </div>
-
-        <button
-          className={styles.create}
-          disabled={!readyToDispatch}
-          type="submit"
-        >
-          Create
-        </button>
-      </form>
-      <NavLink to="/home">
-        <button>X</button>
-      </NavLink>
+      </div>
     </div>
   );
 }
