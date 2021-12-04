@@ -12,3 +12,22 @@
 .textarea {
   resize: none;
 }
+
+.notfulfilled {
+  border-color: red;
+}
+
+.input {
+  position: relative;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  border-color: black;
+  border-style: solid;
+  background-color: var(--primary-font-color);
+  width: 400px;
+  height: 2rem;
+  /* border-color: transparent; */
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.5rem 4rem 0.5rem 0.5rem;
+}

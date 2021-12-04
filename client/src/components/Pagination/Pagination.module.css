@@ -26,14 +26,14 @@
 
 .btn {
   background-color: var(--secondary-color-btn);
-  color: var(--primary-color-btn);
+  color: var(--third-color-btn);
 }
 .btnselected {
-  background-color: var(--primary-color-btn);
+  background-color: var(--third-color-btn);
   color: var(--secondary-color-btn);
 }
 
 .btn:hover {
-  background-color: var(--primary-color-btn);
+  background-color: var(--third-color-btn);
   color: var(--secondary-color-btn);
 }

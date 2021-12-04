@@ -9,6 +9,7 @@ import {
 import List from "../List/List";
 import { NavLink } from "react-router-dom";
 import styles from "./CreateVideogame.module.css";
+import { validationFunc } from "./validationFunc";
 
 export default function CreateVideogame() {
   const [input, setInput] = useState({
@@ -23,6 +24,7 @@ export default function CreateVideogame() {
   });
   const [inputFullfilled, setInputFullfilled] = useState(false);
   const [readyToDispatch, setReadyToDispatch] = useState(false);
+  const [errors, setErrors] = useState({});
   const platforms = [
     { name: "PC" },
     { name: "PlayStation 1" },
@@ -60,6 +62,8 @@ export default function CreateVideogame() {
     }
     if (input.background_img.length >= 0) validation--;
     if (validation === 0) setReadyToDispatch(true);
+    const errors = validationFunc(input);
+    setErrors(errors);
   };
 
   const onSubmit = (event) => {
@@ -102,45 +106,58 @@ export default function CreateVideogame() {
       <form onSubmit={onSubmit}>
         <label>Name: </label>
         <input
+          className={errors.name ? styles.notfulfilled : styles.input}
           name="name"
           type="text"
           onChange={handleChange}
           value={input.name}
         />
-        <p>Name is required</p>
+        {errors.name && <p className={styles.notfulfilled}>Name is required</p>}
+
         <label>Realise Date: </label>
         <input
+          className={errors.realiseDate ? styles.notfulfilled : styles.input}
           name="realiseDate"
           type="date"
           onChange={handleChange}
           value={input.realiseDate}
         />
-        <p>Name is required</p>
+        {errors.realiseDate && (
+          <p className={styles.notfulfilled}>Realise Date is required</p>
+        )}
         <label>Rating: </label>
         <input
+          className={errors.rating ? styles.notfulfilled : styles.input}
           name="rating"
           type="text"
           onChange={handleChange}
           value={input.rating}
         />
-        <p>Name is required</p>
+        {errors.rating && (
+          <p className={styles.notfulfilled}>Rating is required</p>
+        )}
         <label>Description: </label>
         <textarea
-          className={styles.textarea}
+          className={errors.description ? styles.notfulfilled : styles.textarea}
           type="description"
           name="description"
           onChange={handleChange}
           value={input.description}
         />
-        <p>Name is required</p>
+        {errors.description && (
+          <p className={styles.notfulfilled}>Description is required</p>
+        )}
         <label>Background Image: </label>
         <input
+          className={errors.background_img ? styles.notfulfilled : styles.input}
           name="background_img"
           type="text"
           onChange={handleChange}
           value={input.background_img}
         />
-        <p>Name is required</p>
+        {errors.background_img && (
+          <p className={styles.notfulfilled}>Background is required</p>
+        )}
         <div>
           <List
             itemToSelect="genres"
@@ -156,6 +173,9 @@ export default function CreateVideogame() {
                 </li>
               </div>
             ) : null
+          )}
+          {errors.genres && (
+            <p className={styles.notfulfilled}>Genre is required</p>
           )}
         </div>
         <div>
@@ -174,6 +194,9 @@ export default function CreateVideogame() {
               </li>
             </div>
           ))}
+          {errors.platforms && (
+            <p className={styles.notfulfilled}>Platform is required</p>
+          )}
         </div>
 
         <button

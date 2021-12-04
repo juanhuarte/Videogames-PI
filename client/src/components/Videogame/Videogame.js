@@ -9,7 +9,13 @@ export default function Videogame({ name, img, gender, id }) {
       </NavLink>
       <div className={styles.text}>
         <span className={styles.name}>{name}</span>
-        <span className={styles.genre}>{gender}</span>
+        <div className={styles.genres}>
+          {gender?.map((genre) => (
+            <span key={id} className={styles.genre}>
+              {genre}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
