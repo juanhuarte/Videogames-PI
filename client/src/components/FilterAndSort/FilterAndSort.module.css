@@ -22,13 +22,50 @@
   align-items: center; */
 }
 
+.sort,
+.filter {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+}
+
+.select ::-ms-expand {
+  display: none;
+}
+
+.select {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 7px 10px;
+  height: 20px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #f0f0f0;
+  color: #7b7b7b;
+  color: black;
+  font-size: 1em;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.select :hover {
+  background: #b1e8cd;
+}
+
 .sort {
   grid-column: 2/3;
+  max-width: 120px;
   /* margin-left: 100px; */
 }
 
 .filter {
   grid-column: 3/4;
+  max-width: 160px;
 }
 
 .containerLi {

@@ -16,7 +16,7 @@ export default function FilterAndSort({
     <div className={styles.grid}>
       <div className={styles.container}>
         <div className={styles.sort}>
-          <select onChange={(e) => sort(e)}>
+          <select className={styles.select} onChange={(e) => sort(e)}>
             <option disabled selected>
               Order By
             </option>
@@ -27,7 +27,10 @@ export default function FilterAndSort({
           </select>
         </div>
         <div className={styles.filter}>
-          <select onChange={(e) => handleFilterGenres(e)}>
+          <select
+            className={styles.select}
+            onChange={(e) => handleFilterGenres(e)}
+          >
             <option disabled selected>
               Filter By
             </option>
