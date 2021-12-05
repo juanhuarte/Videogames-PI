@@ -36,7 +36,8 @@
   position: relative;
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
-  border-color: black;
+  border-color: #7364d2;
+  border-width: 3px;
   border-style: solid;
   background-color: var(--primary-font-color);
   width: 400px;

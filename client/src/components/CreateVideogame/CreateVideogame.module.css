@@ -89,6 +89,13 @@
   cursor: pointer;
 }
 
+.create:hover {
+  background-color: var(--secondary-color-btn);
+  /* border-color: #736f72; */
+  color: var(--primary-font-color);
+  /* transform: scale(1.1); */
+}
+
 .textarea {
   resize: none;
   width: 35vw;

@@ -34,10 +34,10 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
-  React.useEffect(() => {
-    dispatch(getAllVideogames());
-    dispatch(getAllGenders());
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(getAllVideogames());
+  //   dispatch(getAllGenders());
+  // }, []);
 
   const handleSort = (event) => {
     event.preventDefault();
