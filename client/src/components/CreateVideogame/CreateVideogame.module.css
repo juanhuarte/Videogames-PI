@@ -193,7 +193,9 @@
 .inputd,
 .inputr,
 .inputb,
-.textarea {
+.textarea,
+.notfulfilled,
+.notfulfilledw {
   position: relative;
   font-weight: 600;
   font-size: 0.8rem;
@@ -206,8 +208,9 @@
   /* border-color: transparent; */
   border-radius: 0.5rem;
   box-sizing: border-box;
-  padding: 0.5rem 4rem 0.5rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-width: 3px;
+  outline: none;
 }
 
 .inputn {
@@ -265,7 +268,7 @@
   cursor: pointer;
   font-size: 1.5rem;
   color: red;
-  padding: 0.25rem;
+  padding: 0.05rem;
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
@@ -300,5 +303,15 @@
 .img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 0.5rem;
 }
+
+/* .notfulfilledLabel {
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  color: red;
+  grid-column: 2/3;
+  grid-row: 2/3;
+} */

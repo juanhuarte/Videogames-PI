@@ -52,13 +52,13 @@ export default function CreateVideogame() {
         ...input,
         genres: [...input.genres, parseInt(event.target.value)],
       });
-      event.target.value = "";
+      event.target.value = "Genres";
     } else if (event.target.name === "Platforms") {
       setInput({
         ...input,
         platforms: [...input.platforms, event.target.value],
       });
-      event.target.value = "";
+      event.target.value = "Platforms";
     } else setInput({ ...input, [event.target.name]: event.target.value });
     let validation = 0;
     for (let atribute of Object.keys(input)) {
@@ -123,11 +123,13 @@ export default function CreateVideogame() {
               type="text"
               onChange={handleChange}
               value={input.name}
-              placeholder="Name"
+              placeholder={
+                inputFullfilled.clicked && errors.name ? errors.name : "Name"
+              }
             />
-            {inputFullfilled.clicked && errors.name && (
+            {/* {inputFullfilled.clicked && errors.name && (
               <p className={styles.notfulfilledLabel}>Name is required</p>
-            )}
+            )} */}
           </div>
           <div className={styles.inputdate}>
             {/* <label className={styles.label}>Realise Date: </label> */}
@@ -142,11 +144,11 @@ export default function CreateVideogame() {
               onChange={handleChange}
               value={input.realiseDate}
             />
-            {inputFullfilled.clicked && errors.realiseDate && (
+            {/* {inputFullfilled.clicked && errors.realiseDate && (
               <p className={styles.notfulfilledLabel}>
                 Realise Date is required
               </p>
-            )}
+            )} */}
           </div>
           <div className={styles.inputrating}>
             {/* <label className={styles.label}>Rating: </label> */}
@@ -160,11 +162,17 @@ export default function CreateVideogame() {
               type="text"
               onChange={handleChange}
               value={input.rating}
-              placeholder="Rating"
+              placeholder={
+                inputFullfilled.clicked && errors.rating
+                  ? errors.rating
+                  : "Rating"
+              }
             />
-            {inputFullfilled.clicked && errors.rating && (
-              <p className={styles.notfulfilledLabel}>Rating is required</p>
-            )}
+            {/* {inputFullfilled.clicked &&
+              errors.rating?.length > 22 && (
+                <p className={styles.notfulfilledLabel}>{errors.rating}</p>
+              ) &&
+              console.log(errors.rating)} */}
             {/* <label>Description: </label> */}
           </div>
           <div className={styles.desc}>
@@ -178,13 +186,17 @@ export default function CreateVideogame() {
               name="description"
               onChange={handleChange}
               value={input.description}
-              placeholder="Description"
+              placeholder={
+                inputFullfilled.clicked && errors.description
+                  ? errors.description
+                  : "Description"
+              }
             />
-            {inputFullfilled.clicked && errors.description && (
+            {/* {inputFullfilled.clicked && errors.description && (
               <p className={styles.notfulfilledLabel}>
                 Description is required
               </p>
-            )}
+            )} */}
             {/* <label>Background Image: </label> */}
           </div>
           <div className={styles.inputbkg}>
@@ -198,11 +210,15 @@ export default function CreateVideogame() {
               type="text"
               onChange={handleChange}
               value={input.background_img}
-              placeholder="Background Image"
+              placeholder={
+                inputFullfilled.clicked && errors.background_img
+                  ? errors.background_img
+                  : "Background Image"
+              }
             />
-            {inputFullfilled.clicked && errors.background_img && (
+            {/* {inputFullfilled.clicked && errors.background_img && (
               <p className={styles.notfulfilledLabel}>Background is required</p>
-            )}
+            )} */}
           </div>
           {/* <div className={styles.genres}> */}
           <div className={styles.sel}>
@@ -226,9 +242,9 @@ export default function CreateVideogame() {
                 </div>
               ) : null
             )}
-            {inputFullfilled.clicked && errors.genres && (
+            {/* {inputFullfilled.clicked && errors.genres && (
               <p className={styles.notfulfilledLabel}>Genre is required</p>
-            )}
+            )} */}
           </div>
           {/* </div> */}
           <div className={styles.platform}>
@@ -250,9 +266,9 @@ export default function CreateVideogame() {
                 </button>
               </div>
             ))}
-            {inputFullfilled.clicked && errors.platforms && (
+            {/* {inputFullfilled.clicked && errors.platforms && (
               <p className={styles.notfulfilledLabel}>Platform is required</p>
-            )}
+            )} */}
           </div>
           <div className={styles.createbtn}>
             <button

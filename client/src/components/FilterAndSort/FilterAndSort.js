@@ -16,8 +16,12 @@ export default function FilterAndSort({
     <div className={styles.grid}>
       <div className={styles.container}>
         <div className={styles.sort}>
-          <select className={styles.select} onChange={(e) => sort(e)}>
-            <option disabled selected>
+          <select
+            defaultValue={"DEFAULT"}
+            className={styles.select}
+            onChange={(e) => sort(e)}
+          >
+            <option value="DEFAULT" disabled>
               Order By
             </option>
             <option value="a-z"> A - Z </option>
@@ -34,8 +38,8 @@ export default function FilterAndSort({
             <option disabled selected>
               Filter By
             </option>
-            <option value="allGenres"> All Genres </option>
-            <option value="createdVideogames"> Created Games </option>
+            <option value="All Genres"> All Genres </option>
+            <option value="Created Videogames"> Created Games </option>
             {genres?.map((genre) => (
               <option key={genre.id} value={`${genre.name}`}>
                 {`${genre.name}`}

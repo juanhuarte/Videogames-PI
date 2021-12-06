@@ -47,7 +47,11 @@ function rootReducer(state = initialState, action) {
     case FILTER_BY_GENRE:
       return {
         ...state,
-        videogamesCopy: filterGenre(state.videogamesCopy, action.payload),
+        videogamesCopy: filterGenre(
+          state.videogamesCopy,
+          action.payload,
+          state.videogames
+        ),
       };
     case GET_VIDEOGAME_DETAILS:
       return {

@@ -5,6 +5,7 @@ import { getVideogameDetail } from "../../redux/actions/index";
 import { NavLink } from "react-router-dom";
 import styles from "./VideogameDetail.module.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import Loading from "../Loading/Loading";
 
 export default function VideogameDetail() {
   const { id } = useParams();
@@ -65,6 +66,6 @@ export default function VideogameDetail() {
       </div>
     </div>
   ) : (
-    <h1>Loading</h1>
+    <Loading />
   );
 }

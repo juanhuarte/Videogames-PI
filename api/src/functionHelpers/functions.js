@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { mapping, limitLengthArray } = require("./functionsHelpers");
 const { Gender, Videogame } = require("../db.js");
+// const notFound = require("../../../client/src/Images");
 require("dotenv").config();
 const { API_KEY } = process.env;
 
@@ -31,7 +32,8 @@ const getSomeGames = async (gameName) => {
       .then((dato) => {
         return dato.data.results;
       });
-    someGames = mapping(someGames);
+    if (someGames.length > 0) someGames = mapping(someGames);
+
     let createdGames = await getVideogameCreated();
     if (createdGames.length > 0) {
       createdGames = createdGames.filter((game) => game.name === gameName);
@@ -39,6 +41,16 @@ const getSomeGames = async (gameName) => {
       videogames = limitLengthArray(videogames);
       return videogames;
     }
+    if (someGames.length === 0)
+      someGames = [
+        {
+          id: "a124568",
+          name: "VIDEOGAME NOT FOUNDED",
+          background_img:
+            "https://images.unsplash.com/photo-1609743522653-52354461eb27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+          gender: ["Try another"],
+        },
+      ];
     return limitLengthArray(someGames);
   } catch (error) {
     console.log(error);

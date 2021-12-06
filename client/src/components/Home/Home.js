@@ -14,6 +14,8 @@ import NavBar from "../NavBar/NavBar";
 import FilterAndSort from "../FilterAndSort/FilterAndSort";
 import styles from "./Home.module.css";
 import oldGame from "../../Images/oldGame.jpg";
+import notFound from "../../Images/notFound.jpg";
+import Loading from "../Loading/Loading";
 
 export default function Home() {
   const videogames = useSelector((state) => state.videogamesCopy);
@@ -26,9 +28,18 @@ export default function Home() {
   //const [filterGenre, setFilterGenre] = useState("");
   const [filterGenre, setFilterGenre] = useState([]);
 
+  const notFoundVg = [
+    {
+      id: "a124568",
+      name: "VIDEOGAME NOT FOUNDED",
+      background_img: notFound,
+      gender: ["Try another"],
+    },
+  ];
+
   let lastGame = currentPage * gamesPerPage;
   let firstGame = lastGame - gamesPerPage;
-  const currentVideogame = videogames.slice(firstGame, lastGame);
+  let currentVideogame = videogames.slice(firstGame, lastGame);
 
   const changeGames = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -44,6 +55,7 @@ export default function Home() {
     dispatch(orderVideogames(event.target.value));
     setCurrentPage(1);
     setOrder(event.target.value);
+    // event.target.value = "Order By";
   };
   // ESTE FUNCA
   /*const handleFilterGenres = (e) => {
@@ -57,13 +69,16 @@ export default function Home() {
     e.preventDefault();
     dispatch(filterByGenre(e.target.value));
     setCurrentPage(1);
-    setFilterGenre([...filterGenre, e.target.value]);
+    if (e.target.value === "All Genres") setFilterGenre([e.target.value]);
+    else if (e.target.value === "Created Videogames")
+      setFilterGenre([e.target.value]);
+    else setFilterGenre([...filterGenre, e.target.value]);
+    e.target.value = "Filter By";
   };
 
-  return videogames.length ? (
+  return videogames.length || (!videogames.length && filterGenre.length) ? (
     <div className={styles.home}>
       {/* <div className={styles.bkg} /> */}
-
       <NavBar setCurrentPage={setCurrentPage} setFilterGenre={setFilterGenre} />
       <FilterAndSort
         sort={handleSort}
@@ -71,7 +86,10 @@ export default function Home() {
         handleFilterGenres={handleFilterGenres}
         filterGenre={filterGenre}
       />
-      <Videogames videoGames={currentVideogame} />
+      {}
+      <Videogames
+        videoGames={videogames.length ? currentVideogame : notFoundVg}
+      />
       <Pagination
         videogamesLength={videogames.length}
         changeGames={changeGames}
@@ -79,9 +97,10 @@ export default function Home() {
         gamesPerPage={gamesPerPage}
       />
     </div>
-  ) : filterGenre.length ? (
-    <h1>No existen juego con esos filtros</h1>
   ) : (
-    <h1>Loading</h1>
+    // : filterGenre.length ? (
+    //   <h1>Not Founded</h1>
+    // )
+    <Loading />
   );
 }

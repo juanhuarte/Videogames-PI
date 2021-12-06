@@ -9,7 +9,7 @@ function limitLengthArray(arr) {
 }
 
 const mapping = (array) => {
-  const videogames = array.map((game) => {
+  const videogames = array?.map((game) => {
     return {
       id: game.id,
       name: game.name,

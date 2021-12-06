@@ -10,7 +10,7 @@ export const orderBy = (array, payload) => {
         return 0;
       }
       if (payload === "z-a") {
-        // ordenar de z a la a
+        // ordenar de z a la aa
         if (videogameNameA < videogameNameB) return 1;
         if (videogameNameA > videogameNameB) return -1;
         return 0;
@@ -25,9 +25,9 @@ export const orderBy = (array, payload) => {
   return array;
 };
 
-export const filterGenre = (arr, genre) => {
-  if (genre === "allGenres") return arr;
-  if (genre === "createdVideogames") {
+export const filterGenre = (arr, genre, allVideogames) => {
+  if (genre === "All Genres") return allVideogames;
+  if (genre === "Created Videogames") {
     let videogamesCreated = arr?.filter(
       (videogame) => videogame.id.length > 10
     );
