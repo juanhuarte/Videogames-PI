@@ -154,7 +154,8 @@
   margin-right: 20px;
 }
 
-.selgenres {
+.selgenres,
+.notfulfilledgenres {
   grid-row: 9/11;
   grid-column: 1/2;
   border-color: var(--border-div-color);
@@ -164,6 +165,14 @@
   width: 16.5vw;
   height: 6rem;
   overflow-y: scroll;
+}
+
+.selgenres {
+  border-color: var(--border-div-color);
+}
+
+.notfulfilledgenres {
+  border-color: red;
 }
 
 .platform {
@@ -176,10 +185,11 @@
   margin-right: 20px;
 }
 
-.selplat {
+.selplat,
+.notfulfilledPlatform {
   grid-row: 9/11;
   grid-column: 2/3;
-  border-color: var(--border-div-color);
+
   background-color: var(--primary-font-color);
   border-style: solid;
   border-radius: 0.5rem;
@@ -189,13 +199,29 @@
   border-width: 3px;
 }
 
+.selplat {
+  border-color: var(--border-div-color);
+}
+
+.notfulfilledPlatform {
+  border-color: red;
+}
+
+.labels {
+  color: #6c757d;
+  /* letter-spacing: 1px; */
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
 .inputn,
 .inputd,
 .inputr,
 .inputb,
 .textarea,
 .notfulfilled,
-.notfulfilledw {
+.notfulfilledw,
+.notfulfilledtextarea {
   position: relative;
   font-weight: 600;
   font-size: 0.8rem;
@@ -246,8 +272,16 @@
 
 .notfulfilledw {
   border-color: red;
-  width: 15vw;
+  width: 16.5vw;
   height: 2rem;
+}
+
+.notfulfilledtextarea {
+  border-color: red;
+  width: 35vw;
+  /* height: 6rem; */
+  resize: none;
+  border-width: 3px;
 }
 
 .rigth {

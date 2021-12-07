@@ -5,6 +5,7 @@ export default function FilterAndSort({
   genres,
   handleFilterGenres,
   filterGenre,
+  clicked,
 }) {
   // const [data, setData] = useState({sortt: 'Order By', filter:'Filter By'})
 
@@ -17,11 +18,12 @@ export default function FilterAndSort({
       <div className={styles.container}>
         <div className={styles.sort}>
           <select
-            defaultValue={"DEFAULT"}
+            // defaultValue={"DEFAULT"}
             className={styles.select}
             onChange={(e) => sort(e)}
           >
-            <option value="DEFAULT" disabled>
+            {/* <option value="DEFAULT" disabled> */}
+            <option disabled selected={clicked.sort}>
               Order By
             </option>
             <option value="a-z"> A - Z </option>
@@ -35,10 +37,11 @@ export default function FilterAndSort({
             className={styles.select}
             onChange={(e) => handleFilterGenres(e)}
           >
-            <option disabled selected>
+            <option disabled selected={clicked.filter}>
               Filter By
             </option>
             <option value="All Genres"> All Genres </option>
+            <option value="API Games"> API Games </option>
             <option value="Created Videogames"> Created Games </option>
             {genres?.map((genre) => (
               <option key={genre.id} value={`${genre.name}`}>

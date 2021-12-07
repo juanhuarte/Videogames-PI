@@ -27,6 +27,10 @@ export default function CreateVideogame() {
     boolean: false,
     clicked: false,
   });
+  const [clickedSel, setClickedSel] = useState({
+    platforms: true,
+    genres: true,
+  });
   const [readyToDispatch, setReadyToDispatch] = useState(false);
   const [errors, setErrors] = useState({});
   const platforms = [
@@ -45,29 +49,77 @@ export default function CreateVideogame() {
   ];
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
+
   // let readyToDispatch = false;
+
   const handleChange = (event) => {
     if (event.target.name === "Genres") {
-      setInput({
-        ...input,
-        genres: [...input.genres, parseInt(event.target.value)],
+      setInput((input) => {
+        const newInput = {
+          ...input,
+          genres: [...input.genres, parseInt(event.target.value)],
+        };
+        const errors = validationFunc(newInput);
+        setErrors(errors);
+        setClickedSel({ ...clickedSel, genres: false });
+        // let validation = 0;
+        // for (let atribute of Object.keys(newInput)) {
+        //   if (newInput[atribute].length === 0) validation++;
+        // }
+        // // if (input.background_img.length >= 0) validation--;
+        // if (validation === 0) setReadyToDispatch(true);
+        if (!Object.keys(errors).length) setReadyToDispatch(true);
+        else setReadyToDispatch(false);
+        return newInput;
       });
-      event.target.value = "Genres";
+
+      // event.target.value = "Genres";
     } else if (event.target.name === "Platforms") {
-      setInput({
-        ...input,
-        platforms: [...input.platforms, event.target.value],
+      setInput((input) => {
+        const newInput = {
+          ...input,
+          platforms: [...input.platforms, event.target.value],
+        };
+        const errors = validationFunc(newInput);
+        setErrors(errors);
+        setClickedSel({ ...clickedSel, platforms: false });
+        // event.target.value = "Platforms";
+        // let validation = 0;
+        // for (let atribute of Object.keys(newInput)) {
+        //   if (newInput[atribute].length === 0) validation++;
+        // }
+        // // if (input.background_img.length >= 0) validation--;
+        // if (validation === 0) setReadyToDispatch(true);
+        if (!Object.keys(errors).length) setReadyToDispatch(true);
+        else setReadyToDispatch(false);
+        return newInput;
       });
-      event.target.value = "Platforms";
-    } else setInput({ ...input, [event.target.name]: event.target.value });
-    let validation = 0;
-    for (let atribute of Object.keys(input)) {
-      if (input[atribute].length === 0) validation++;
+      // event.target.value = "Platforms";
+    } else {
+      setInput((input) => {
+        const newInput = {
+          ...input,
+          [event.target.name]: event.target.value,
+        };
+        const errors = validationFunc(newInput);
+        setErrors(errors);
+        // let validation = 0;
+        // for (let atribute of Object.keys(newInput)) {
+        //   if (newInput[atribute].length === 0) validation++;
+        // }
+        // // if (input.background_img.length >= 0) validation--;
+        // if (validation === 0) setReadyToDispatch(true);
+        if (!Object.keys(errors).length) setReadyToDispatch(true);
+        else setReadyToDispatch(false);
+        return newInput;
+      });
     }
-    if (input.background_img.length >= 0) validation--;
-    if (validation === 0) setReadyToDispatch(true);
-    const errors = validationFunc(input);
-    setErrors(errors);
+    // let validation = 0;
+    // for (let atribute of Object.keys(input)) {
+    //   if (input[atribute].length === 0) validation++;
+    // }
+    // // if (input.background_img.length >= 0) validation--;
+    // if (validation === 0) setReadyToDispatch(true);
   };
 
   const onSubmit = (event) => {
@@ -88,20 +140,42 @@ export default function CreateVideogame() {
     } else {
       // alert("all fields must be completed");
       setInputFullfilled({ ...inputFullfilled, clicked: true });
+      const errors = validationFunc(input);
+      setErrors(errors);
     }
   };
 
   function handleDelete(id) {
-    setInput({
-      ...input,
-      genres: input.genres?.filter((genre) => genre !== id),
+    // setInput({
+    //   ...input,
+    //   genres: input.genres?.filter((genre) => genre !== id),
+    // });
+    setInput((input) => {
+      const newInput = {
+        ...input,
+        genres: input.genres?.filter((genre) => genre != id),
+      };
+      const errors = validationFunc(newInput);
+      setErrors(errors);
+      setClickedSel({ ...clickedSel, genres: true });
+      if (!Object.keys(errors).length) setReadyToDispatch(true);
+      else setReadyToDispatch(false);
+      return newInput;
     });
   }
 
   function handleDeletePlatforms(name) {
-    setInput({
-      ...input,
-      platforms: input.platforms?.filter((platform) => platform !== name),
+    setInput((input) => {
+      const newInput = {
+        ...input,
+        platforms: input.platforms?.filter((platform) => platform !== name),
+      };
+      const errors = validationFunc(newInput);
+      setErrors(errors);
+      setClickedSel({ ...clickedSel, platforms: true });
+      if (!Object.keys(errors).length) setReadyToDispatch(true);
+      else setReadyToDispatch(false);
+      return newInput;
     });
   }
   return inputFullfilled.boolean === true ? (
@@ -165,7 +239,7 @@ export default function CreateVideogame() {
               placeholder={
                 inputFullfilled.clicked && errors.rating
                   ? errors.rating
-                  : "Rating"
+                  : "Rating: 0 - 5"
               }
             />
             {/* {inputFullfilled.clicked &&
@@ -179,7 +253,7 @@ export default function CreateVideogame() {
             <textarea
               className={
                 inputFullfilled.clicked && errors.description
-                  ? styles.notfulfilled
+                  ? styles.notfulfilledtextarea
                   : styles.textarea
               }
               type="description"
@@ -226,13 +300,23 @@ export default function CreateVideogame() {
               itemToSelect="Genres"
               itemsList={genres}
               selectHandler={handleChange}
+              clickedSel={clickedSel}
             />
           </div>
-          <div className={styles.selgenres}>
+          <div
+            className={
+              inputFullfilled.clicked && errors.genres
+                ? styles.notfulfilledgenres
+                : styles.selgenres
+            }
+          >
+            {inputFullfilled.clicked && errors.genres && (
+              <label className={styles.labels}>{errors.genres}</label>
+            )}
             {genres?.map((genre, i) =>
-              input.genres.includes(genre.id) ? (
-                <div className={styles.list}>
-                  <li key={i}>{genre.name}</li>
+              input.genres.includes(parseInt(genre.id)) ? (
+                <div key={i} className={styles.list}>
+                  <li>{genre.name}</li>
                   <button
                     className={styles.btnclose}
                     onClick={() => handleDelete(genre.id)}
@@ -252,12 +336,23 @@ export default function CreateVideogame() {
               itemToSelect="Platforms"
               itemsList={platforms}
               selectHandler={handleChange}
+              clickedSel={clickedSel}
             />
           </div>
-          <div className={styles.selplat}>
+          <div
+            className={
+              inputFullfilled.clicked && errors.platforms
+                ? styles.notfulfilledPlatform
+                : styles.selplat
+            }
+          >
+            {inputFullfilled.clicked && errors.platforms && (
+              <label className={styles.labels}>{errors.platforms}</label>
+            )}
+
             {input.platforms?.map((platform, i) => (
-              <div className={styles.list}>
-                <li key={i}>{platform}</li>
+              <div key={i} className={styles.list}>
+                <li>{platform}</li>
                 <button
                   className={styles.btnclose}
                   onClick={() => handleDeletePlatforms(platform)}

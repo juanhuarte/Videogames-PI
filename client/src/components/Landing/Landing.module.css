@@ -3,8 +3,48 @@
   background-repeat: no repeat;
   background-size: cover;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  position: absolute;
+  top: 140px;
+  right: 250px;
+  left: 250px;
+  bottom: 250px;
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* justify-items: center; */
+  /* justify-self: center; */
+}
+
+.label {
+  color: var(--landing-color);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.btn {
+  font-size: 2rem;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 2px;
+  color: var(--landing-color);
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+.btn:hover {
+  transform: scale(1.5);
 }

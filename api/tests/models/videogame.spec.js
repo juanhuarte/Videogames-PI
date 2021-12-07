@@ -107,20 +107,6 @@ describe("Videogame model", () => {
           .catch(() => done());
       });
     });
-
-    describe("background_img", () => {
-      it("should throw an error if background_img is null", (done) => {
-        Videogame.create({
-          name: "name",
-          description: "Juego de Mario Bros",
-          realiseDate: "6/12/2021",
-          rating: "4.8",
-          platforms: ["PC", "Playstatio 4"],
-        })
-          .then(() => done(new Error("It requires a valid background_img")))
-          .catch(() => done());
-      });
-    });
   });
   after(() => Videogame.sync({ force: true }));
 });

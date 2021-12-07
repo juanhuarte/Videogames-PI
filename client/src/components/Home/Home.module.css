@@ -1,5 +1,6 @@
 .home {
   background-image: url("../../Images/oldGame.jpg");
+
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
@@ -9,6 +10,9 @@
   /* display: grid; */
   grid-column: 1 / 6;
   grid-row: 1 / 5;
+
+  /* backdrop-filter: blur(8px); */
+  /* image-rendering: pixelated; */
 }
 
 /* .bkg {

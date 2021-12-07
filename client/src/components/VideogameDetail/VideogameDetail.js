@@ -14,7 +14,7 @@ export default function VideogameDetail() {
     dispatch(getVideogameDetail(id));
   }, [dispatch]);
   const videogameDetails = useSelector((state) => state.videogameDetails);
-  return videogameDetails && videogameDetails.id === parseInt(id) ? (
+  return videogameDetails && videogameDetails.id == id ? (
     <div className={styles.detail}>
       <div className={styles.bkg} />
       <div className={styles.container}>

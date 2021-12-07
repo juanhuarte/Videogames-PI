@@ -27,6 +27,7 @@ export default function Home() {
   // ESTE FUNCA
   //const [filterGenre, setFilterGenre] = useState("");
   const [filterGenre, setFilterGenre] = useState([]);
+  const [clicked, setClicked] = useState({ sort: true, filter: true });
 
   const notFoundVg = [
     {
@@ -55,6 +56,7 @@ export default function Home() {
     dispatch(orderVideogames(event.target.value));
     setCurrentPage(1);
     setOrder(event.target.value);
+    setClicked({ ...clicked, sort: false });
     // event.target.value = "Order By";
   };
   // ESTE FUNCA
@@ -70,21 +72,28 @@ export default function Home() {
     dispatch(filterByGenre(e.target.value));
     setCurrentPage(1);
     if (e.target.value === "All Genres") setFilterGenre([e.target.value]);
+    else if (e.target.value === "API Games") setFilterGenre([e.target.value]);
     else if (e.target.value === "Created Videogames")
       setFilterGenre([e.target.value]);
     else setFilterGenre([...filterGenre, e.target.value]);
-    e.target.value = "Filter By";
+    // e.target.value = "Filter By";
+    setClicked({ ...clicked, filter: false });
   };
 
   return videogames.length || (!videogames.length && filterGenre.length) ? (
     <div className={styles.home}>
       {/* <div className={styles.bkg} /> */}
-      <NavBar setCurrentPage={setCurrentPage} setFilterGenre={setFilterGenre} />
+      <NavBar
+        setCurrentPage={setCurrentPage}
+        setFilterGenre={setFilterGenre}
+        setClicked={setClicked}
+      />
       <FilterAndSort
         sort={handleSort}
         genres={genres}
         handleFilterGenres={handleFilterGenres}
         filterGenre={filterGenre}
+        clicked={clicked}
       />
       {}
       <Videogames
@@ -98,9 +107,6 @@ export default function Home() {
       />
     </div>
   ) : (
-    // : filterGenre.length ? (
-    //   <h1>Not Founded</h1>
-    // )
     <Loading />
   );
 }

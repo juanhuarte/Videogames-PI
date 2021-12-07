@@ -16,12 +16,16 @@ describe("Gender model", () => {
           .catch(() => done());
       });
       it("Should throw an error if name is not unique", () => {
-        return new Promise(async (resolve, reject) => {
-          await Gender.create({ name: "name" });
-          await Gender.create({ name: "name" })
-            .then(() => reject(new Error("name must be unique")))
-            .catch(resolve);
-        });
+        // return new Promise(async (resolve, reject) => {
+        //   await Gender.create({ name: "name" });
+        //   await Gender.create({ name: "name" })
+        //     .then(() => reject(new Error("name must be unique")))
+        //     .catch(resolve);
+        // });
+        Gender.create({ name: "name" });
+        Gender.create({ name: "name" })
+          .then(() => done(new Error("name must be unique")))
+          .catch(() => done());
       });
     });
   });

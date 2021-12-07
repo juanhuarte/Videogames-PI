@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
-export default function NavBar({ setCurrentPage, setFilterGenre }) {
+export default function NavBar({ setCurrentPage, setFilterGenre, setClicked }) {
   return (
     <div className={styles.navbar}>
       {/* <div className={styles.name}> */}
@@ -14,6 +14,7 @@ export default function NavBar({ setCurrentPage, setFilterGenre }) {
         <SearchBar
           setCurrentPage={setCurrentPage}
           setFilterGenre={setFilterGenre}
+          setClicked={setClicked}
         />
       </div>
       <div className={styles.links}>

@@ -1,6 +1,11 @@
 import styles from "./List.module.css";
 
-export default function List({ itemToSelect, itemsList, selectHandler }) {
+export default function List({
+  itemToSelect,
+  itemsList,
+  selectHandler,
+  clickedSel,
+}) {
   // htmlFor: Return the value of the for attribute of a label:
   // onInput: The oninput event occurs when an element gets user input. This event occurs when the value of an <input> or <textarea> element is changed.
   return (
@@ -12,7 +17,12 @@ export default function List({ itemToSelect, itemsList, selectHandler }) {
         name={itemToSelect}
         onInput={selectHandler}
       >
-        <option disabled selected>
+        <option
+          disabled
+          selected={
+            itemToSelect === "Genres" ? clickedSel.genres : clickedSel.platforms
+          }
+        >
           {itemToSelect}
         </option>
         {itemsList?.map((item, i) => (

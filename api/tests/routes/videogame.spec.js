@@ -28,7 +28,7 @@ describe("Videogame routes", () => {
     })
   );
 
-  describe("GET /videogames", () => {
+  xdescribe("GET /videogames", () => {
     it("should get 200", () => agent.get("/videogames").expect(200));
 
     it("Should return an array of Videogames", () =>
@@ -53,7 +53,7 @@ describe("Videogame routes", () => {
       }));
   });
 
-  describe("GET /videogame/:idVideogame", () => {
+  xdescribe("GET /videogame/:idVideogame", () => {
     it("Should return one object of a Videogame from DB", () =>
       new Promise((resolve, reject) => {
         agent

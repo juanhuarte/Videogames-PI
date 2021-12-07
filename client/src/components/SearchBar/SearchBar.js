@@ -6,7 +6,11 @@ import { HiRefresh } from "react-icons/hi";
 import { IoSearchOutline } from "react-icons/io5";
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar({ setCurrentPage, setFilterGenre }) {
+export default function SearchBar({
+  setCurrentPage,
+  setFilterGenre,
+  setClicked,
+}) {
   const dispatch = useDispatch();
   const [input, setInput] = useState({ name: "" });
 
@@ -25,6 +29,7 @@ export default function SearchBar({ setCurrentPage, setFilterGenre }) {
     dispatch(cleanFilter());
     setFilterGenre([]);
     setCurrentPage(1);
+    setClicked({ sort: true, filter: true });
   }
 
   return (
