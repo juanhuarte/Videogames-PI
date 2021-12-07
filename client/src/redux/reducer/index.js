@@ -7,13 +7,15 @@ import {
   FILTER_BY_GENRE,
   GET_VIDEOGAME_DETAILS,
   CREATE_VIDEOGAME,
+  FIND_CREATED_GAMES_BY_NAME,
 } from "../actions/index";
-import { orderBy, filterGenre } from "./helper";
+import { orderBy, filterGenre, findCreatedGame } from "./helper";
 const initialState = {
   videogames: [],
   videogamesCopy: [],
   genres: [],
   videogameDetails: {},
+  boolean: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -60,6 +62,11 @@ function rootReducer(state = initialState, action) {
       };
     case CREATE_VIDEOGAME:
       return { ...state };
+    case FIND_CREATED_GAMES_BY_NAME:
+      return {
+        ...state,
+        boolean: findCreatedGame(state.videogamesCopy, action.payload),
+      };
     default:
       return state;
   }

@@ -7,6 +7,7 @@ export const GET_ALL_GENDERS = "GET_ALL_GENDERS";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const GET_VIDEOGAME_DETAILS = "GET_VIDEOGAME_DETAILS";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
+export const FIND_CREATED_GAMES_BY_NAME = "FIND_CREATED_GAMES_BY_NAME";
 
 export function getAllVideogames() {
   return function (dispatch) {
@@ -108,3 +109,9 @@ export function createVideogame({
     }
   };
 }
+
+export const findCreatedGamesByName = (name) => (dispatch) =>
+  dispatch({
+    type: FIND_CREATED_GAMES_BY_NAME,
+    payload: name,
+  });

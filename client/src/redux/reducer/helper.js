@@ -45,3 +45,12 @@ export const filterGenre = (arr, genre, allVideogames) => {
   );
   return videogamesByGenre;
 };
+
+export const findCreatedGame = (arr, name) => {
+  let videogamesCreated = arr?.filter(
+    (videogame) => videogame.id.length > 10 && videogame.name === name
+  );
+
+  if (videogamesCreated.length > 0) return true;
+  return false;
+};

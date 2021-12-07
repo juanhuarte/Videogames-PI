@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center; */
   position: absolute;
-  top: 140px;
+  top: 120px;
   right: 250px;
   left: 250px;
   bottom: 250px;
@@ -28,7 +28,7 @@
 
 .label {
   color: var(--landing-color);
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 5px;
 }

@@ -5,6 +5,7 @@ import {
   createVideogame,
   getAllVideogames,
   getAllGenders,
+  findCreatedGamesByName,
 } from "../../redux/actions/index";
 import List from "../List/List";
 import { NavLink } from "react-router-dom";
@@ -31,6 +32,7 @@ export default function CreateVideogame() {
     platforms: true,
     genres: true,
   });
+  const allReadyCreated = useSelector((state) => state.boolean);
   const [readyToDispatch, setReadyToDispatch] = useState(false);
   const [errors, setErrors] = useState({});
   const platforms = [
@@ -103,14 +105,18 @@ export default function CreateVideogame() {
         };
         const errors = validationFunc(newInput);
         setErrors(errors);
+        if (event.target.name === "name") {
+          dispatch(findCreatedGamesByName(newInput.name));
+        }
         // let validation = 0;
         // for (let atribute of Object.keys(newInput)) {
         //   if (newInput[atribute].length === 0) validation++;
         // }
         // // if (input.background_img.length >= 0) validation--;
         // if (validation === 0) setReadyToDispatch(true);
-        if (!Object.keys(errors).length) setReadyToDispatch(true);
-        else setReadyToDispatch(false);
+        if (!Object.keys(errors).length) {
+          setReadyToDispatch(true);
+        } else setReadyToDispatch(false);
         return newInput;
       });
     }
@@ -129,14 +135,17 @@ export default function CreateVideogame() {
     //   if (input[atribute].length === 0) validation++;
     // }
     // if (validation === 0) readyToDispatch = true;
+    // dispatch(findCreatedGamesByName(input.name));
+
     if (readyToDispatch === true) {
-      dispatch(createVideogame(input));
-      dispatch(getAllVideogames()); // despacho esta accion para que se actualice el array donde tengo todos los juegos(los creados y los de la api)
-      dispatch(getAllGenders());
-      setInput({ ...input, redirect: true });
-      setInputFullfilled({ ...inputFullfilled, boolean: true });
-      setReadyToDispatch(false);
-      console.log("input", input);
+      if (!allReadyCreated) {
+        dispatch(createVideogame(input));
+        dispatch(getAllVideogames()); // despacho esta accion para que se actualice el array donde tengo todos los juegos(los creados y los de la api)
+        dispatch(getAllGenders());
+        setInput({ ...input, redirect: true });
+        setInputFullfilled({ ...inputFullfilled, boolean: true });
+        setReadyToDispatch(false);
+      } else alert("This videogame was all ready created");
     } else {
       // alert("all fields must be completed");
       setInputFullfilled({ ...inputFullfilled, clicked: true });

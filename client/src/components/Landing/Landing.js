@@ -7,7 +7,7 @@ export default function Landing() {
   return (
     <div className={styles.landing}>
       <div className={styles.container}>
-        <h2 className={styles.label}>GAME ON</h2>
+        <h1 className={styles.label}>GAME ON</h1>
         <NavLink to="/home">
           <button className={styles.btn}>
             <FaPowerOff />
