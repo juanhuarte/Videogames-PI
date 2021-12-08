@@ -27,8 +27,7 @@ conn.sync({ force: true }).then(() => {
   server.listen(3001, async () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
     // aca tendria que hacer el precargado de los genres
-    // puedo immportar el modelo (tabla gender), llamo a la api me traigo los 19 generos, los tengo que pushear en un array que voy a tener promesas y de ahi puedo disparar un promiseall
-    // esto hace que se liberen todas las promesas al mismo tiempo (en paralelo). e ir creando en la base de datos cargando los generos.
+    // puedo immportar el modelo (tabla gender), llamo a la api me traigo los 19 generos, los tengo que pushear en un array que voy a tener promesas e ir creando en la base de datos cargando los generos.
 
     //NO OLVIDARME DE DESCOMENTAR ESTO CUANDO FUNQUE LA API
     getGenres(); // hago el llamado a la api y me traigo los generos y cargo la tabla genders de db con la data que obtuve de la api

@@ -1,7 +1,6 @@
 const axios = require("axios");
 const { mapping, limitLengthArray } = require("./functionsHelpers");
 const { Gender, Videogame } = require("../db.js");
-// const notFound = require("../../../client/src/Images");
 require("dotenv").config();
 const { API_KEY } = process.env;
 
@@ -110,7 +109,6 @@ const createVideogames = async (
   background_img,
   genres
 ) => {
-  console.log(name, description);
   try {
     let videogame = await Videogame.create({
       name,

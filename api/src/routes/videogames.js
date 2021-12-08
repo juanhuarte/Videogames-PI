@@ -3,11 +3,7 @@ const { Router } = require("express");
 const {
   listAllVideogames,
   getSomeGames,
-  findVideogameById,
-  createVideogames,
 } = require("../functionHelpers/functions");
-
-const { Videogame } = require("../db");
 
 const router = Router();
 

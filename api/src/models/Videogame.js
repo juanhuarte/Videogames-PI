@@ -1,6 +1,6 @@
 //const { DataTypes } = require('sequelize');
 const Sequelize = require("sequelize");
-const { UUID, STRING, TEXT, ARRAY, INTEGER, UUIDV4 } = Sequelize.DataTypes;
+const { UUID, STRING, TEXT, ARRAY, UUIDV4 } = Sequelize.DataTypes;
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {

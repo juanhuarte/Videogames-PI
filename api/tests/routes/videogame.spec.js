@@ -13,6 +13,7 @@ const videogame = {
   platforms: ["PC", "Playstatio 4"],
   background_img:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB3yEKyTrG6BEOWg1KNhyvE29NjOa3LRbT2Q&usqp=CAU",
+  genres: ["Action"],
 };
 
 describe("Videogame routes", () => {
@@ -28,7 +29,7 @@ describe("Videogame routes", () => {
     })
   );
 
-  xdescribe("GET /videogames", () => {
+  describe("GET /videogames", () => {
     it("should get 200", () => agent.get("/videogames").expect(200));
 
     it("Should return an array of Videogames", () =>
@@ -53,24 +54,25 @@ describe("Videogame routes", () => {
       }));
   });
 
-  xdescribe("GET /videogame/:idVideogame", () => {
+  describe("GET /videogame/:idVideogame", () => {
     it("Should return one object of a Videogame from DB", () =>
       new Promise((resolve, reject) => {
         agent
           .get(`/videogame/${videogameID}`)
           .expect(200)
           .end((err, res) => {
+            console.log(videogameID);
             if (err) return reject(err);
 
             expect(res.body).to.be.an("object");
-            expect(res.body[0]).to.have.property("id");
-            expect(res.body[0]).to.have.property("name");
-            expect(res.body[0]).to.have.property("description");
-            expect(res.body[0]).to.have.property("realiseDate");
-            expect(res.body[0]).to.have.property("rating");
-            expect(res.body[0]).to.have.property("platforms");
-            expect(res.body[0].platforms).to.be.an("array");
-            expect(res.body[0]).to.have.property("background_img");
+            expect(res.body).to.have.property("id");
+            expect(res.body).to.have.property("name");
+            expect(res.body).to.have.property("description");
+            expect(res.body).to.have.property("realiseDate");
+            expect(res.body).to.have.property("rating");
+            expect(res.body).to.have.property("platforms");
+            expect(res.body.platforms).to.be.an("array");
+            expect(res.body).to.have.property("background_img");
             return resolve();
           });
       }));
@@ -83,14 +85,14 @@ describe("Videogame routes", () => {
             if (err) return reject(err);
 
             expect(res.body).to.be.an("object");
-            expect(res.body[0]).to.have.property("id");
-            expect(res.body[0]).to.have.property("name");
-            expect(res.body[0]).to.have.property("description");
-            expect(res.body[0]).to.have.property("realiseDate");
-            expect(res.body[0]).to.have.property("rating");
-            expect(res.body[0]).to.have.property("platforms");
-            expect(res.body[0].platforms).to.be.an("array");
-            expect(res.body[0]).to.have.property("background_img");
+            expect(res.body).to.have.property("id");
+            expect(res.body).to.have.property("name");
+            expect(res.body).to.have.property("description");
+            expect(res.body).to.have.property("realiseDate");
+            expect(res.body).to.have.property("rating");
+            expect(res.body).to.have.property("platforms");
+            expect(res.body.platforms).to.be.an("array");
+            expect(res.body).to.have.property("background_img");
             return resolve();
           });
       }));
@@ -109,21 +111,32 @@ describe("Videogame routes", () => {
           await Gender.create({ name: "Action" });
           await agent
             .post("/videogame")
-            .send({ ...videogame, name: "Mario cars", gender: ["Action"] })
+            .send({
+              name: "Mario Bros",
+              description: "Juego de Mario Bros",
+              realiseDate: "6/12/2021",
+              rating: "4.8",
+              platforms: ["PC", "Playstatio 4"],
+              background_img:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB3yEKyTrG6BEOWg1KNhyvE29NjOa3LRbT2Q&usqp=CAU",
+              genres: ["1"],
+            })
             .expect(200)
             .then(async (res) => {
+              console.log(res.body);
               expect(res.body).to.be.an("object");
-              expect(res.body[0]).to.have.property("id");
-              expect(res.body[0]).to.have.property("name");
-              expect(res.body[0]).to.have.property("description");
-              expect(res.body[0]).to.have.property("realiseDate");
-              expect(res.body[0]).to.have.property("rating");
-              expect(res.body[0]).to.have.property("platforms");
-              expect(res.body[0].platforms).to.be.an("array");
-              expect(res.body[0]).to.have.property("gender");
-              expect(res.body[0].gender).to.be.an("array");
-              expect(res.body[0].gender[0]).to.be.equal("Action");
-              expect(res.body[0]).to.have.property("background_img");
+              expect(res.body).to.have.property("msj");
+              expect(res.body.msj).to.be.equal("se creo el videojuego");
+              // expect(res.body[0]).to.have.property("name");
+              // expect(res.body[0]).to.have.property("description");
+              // expect(res.body[0]).to.have.property("realiseDate");
+              // expect(res.body[0]).to.have.property("rating");
+              // expect(res.body[0]).to.have.property("platforms");
+              // expect(res.body[0].platforms).to.be.an("array");
+              // expect(res.body[0]).to.have.property("gender");
+              // expect(res.body[0].gender).to.be.an("array");
+              // expect(res.body[0].gender[0]).to.be.equal("Action");
+              // expect(res.body[0]).to.have.property("background_img");
             });
           return resolve();
         } catch (err) {
