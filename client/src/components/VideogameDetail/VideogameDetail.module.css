@@ -10,7 +10,6 @@
 .bkg {
   width: 100vw;
   height: 100vh;
-  /* background-color: #6c757d; */
   backdrop-filter: blur(8px);
 }
 
@@ -30,8 +29,6 @@
   display: grid;
   grid-template-columns: repeat(3, 20vw);
   grid-template-rows: repeat(11, 1fr);
-  /* gap: 10px; */
-  /* margin: 10px; */
 }
 
 .spanname,

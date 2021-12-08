@@ -12,8 +12,6 @@ import { useDispatch } from "react-redux";
 function App() {
   const dispatch = useDispatch();
 
-  //NO OLVIDARME DE DESCOMENTAR ESTO CUANDO FUNQUE LA API
-
   React.useEffect(() => {
     dispatch(getAllVideogames());
     dispatch(getAllGenders());

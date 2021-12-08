@@ -18,9 +18,10 @@ const Pagination = ({
           {pagesNumbers?.map((number) => {
             return (
               <button
-                // className={styles.btn}
                 className={
-                  currentPage === number ? styles.btnselected : styles.btn
+                  parseInt(currentPage) === number
+                    ? styles.btnselected
+                    : styles.btn
                 }
                 key={number}
                 value={number}
@@ -29,16 +30,6 @@ const Pagination = ({
                 {number}
               </button>
             );
-            // ) : (
-            //   <button
-            //     className={styles.btnselected}
-            //     key={number}
-            //     value={number}
-            //     onClick={(e) => changeGames(e.target.value)}
-            //   >
-            //     {number}
-            //   </button>
-            // );
           })}
         </ul>
       </nav>

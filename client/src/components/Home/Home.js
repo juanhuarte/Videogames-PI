@@ -1,19 +1,12 @@
-import { Route, NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllVideogames,
-  orderVideogames,
-  getAllGenders,
-  filterByGenre,
-} from "../../redux/actions/index";
+import { orderVideogames, filterByGenre } from "../../redux/actions/index";
 import React from "react";
 import Videogames from "../Videogames/Videogames";
 import Pagination from "../Pagination/Pagination";
 import NavBar from "../NavBar/NavBar";
 import FilterAndSort from "../FilterAndSort/FilterAndSort";
 import styles from "./Home.module.css";
-import oldGame from "../../Images/oldGame.jpg";
 import notFound from "../../Images/notFound.jpg";
 import Loading from "../Loading/Loading";
 
@@ -24,8 +17,6 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage, setGamesPerPage] = useState(15);
   const [order, setOrder] = useState("");
-  // ESTE FUNCA
-  //const [filterGenre, setFilterGenre] = useState("");
   const [filterGenre, setFilterGenre] = useState([]);
   const [clicked, setClicked] = useState({ sort: true, filter: true });
 
@@ -46,26 +37,13 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
-  // React.useEffect(() => {
-  //   dispatch(getAllVideogames());
-  //   dispatch(getAllGenders());
-  // }, []);
-
   const handleSort = (event) => {
     event.preventDefault();
     dispatch(orderVideogames(event.target.value));
     setCurrentPage(1);
     setOrder(event.target.value);
     setClicked({ ...clicked, sort: false });
-    // event.target.value = "Order By";
   };
-  // ESTE FUNCA
-  /*const handleFilterGenres = (e) => {
-    e.preventDefault();
-    dispatch(filterByGenre(e.target.value));
-    setCurrentPage(1);
-    setFilterGenre(e.target.value);
-  };*/
 
   const handleFilterGenres = (e) => {
     e.preventDefault();
@@ -76,7 +54,6 @@ export default function Home() {
     else if (e.target.value === "Created Videogames")
       setFilterGenre([e.target.value]);
     else setFilterGenre([...filterGenre, e.target.value]);
-    // e.target.value = "Filter By";
     setClicked({ ...clicked, filter: false });
   };
 
@@ -95,7 +72,6 @@ export default function Home() {
         filterGenre={filterGenre}
         clicked={clicked}
       />
-      {}
       <Videogames
         videoGames={videogames.length ? currentVideogame : notFoundVg}
       />

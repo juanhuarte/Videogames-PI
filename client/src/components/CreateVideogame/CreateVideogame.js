@@ -52,10 +52,9 @@ export default function CreateVideogame() {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
 
-  // let readyToDispatch = false;
-
   const handleChange = (event) => {
     if (event.target.name === "Genres") {
+      // Trabajo con el estado anterior del input
       setInput((input) => {
         const newInput = {
           ...input,
@@ -64,18 +63,10 @@ export default function CreateVideogame() {
         const errors = validationFunc(newInput);
         setErrors(errors);
         setClickedSel({ ...clickedSel, genres: false });
-        // let validation = 0;
-        // for (let atribute of Object.keys(newInput)) {
-        //   if (newInput[atribute].length === 0) validation++;
-        // }
-        // // if (input.background_img.length >= 0) validation--;
-        // if (validation === 0) setReadyToDispatch(true);
         if (!Object.keys(errors).length) setReadyToDispatch(true);
         else setReadyToDispatch(false);
         return newInput;
       });
-
-      // event.target.value = "Genres";
     } else if (event.target.name === "Platforms") {
       setInput((input) => {
         const newInput = {
@@ -85,18 +76,10 @@ export default function CreateVideogame() {
         const errors = validationFunc(newInput);
         setErrors(errors);
         setClickedSel({ ...clickedSel, platforms: false });
-        // event.target.value = "Platforms";
-        // let validation = 0;
-        // for (let atribute of Object.keys(newInput)) {
-        //   if (newInput[atribute].length === 0) validation++;
-        // }
-        // // if (input.background_img.length >= 0) validation--;
-        // if (validation === 0) setReadyToDispatch(true);
         if (!Object.keys(errors).length) setReadyToDispatch(true);
         else setReadyToDispatch(false);
         return newInput;
       });
-      // event.target.value = "Platforms";
     } else {
       setInput((input) => {
         const newInput = {
@@ -108,35 +91,16 @@ export default function CreateVideogame() {
         if (event.target.name === "name") {
           dispatch(findCreatedGamesByName(newInput.name));
         }
-        // let validation = 0;
-        // for (let atribute of Object.keys(newInput)) {
-        //   if (newInput[atribute].length === 0) validation++;
-        // }
-        // // if (input.background_img.length >= 0) validation--;
-        // if (validation === 0) setReadyToDispatch(true);
         if (!Object.keys(errors).length) {
           setReadyToDispatch(true);
         } else setReadyToDispatch(false);
         return newInput;
       });
     }
-    // let validation = 0;
-    // for (let atribute of Object.keys(input)) {
-    //   if (input[atribute].length === 0) validation++;
-    // }
-    // // if (input.background_img.length >= 0) validation--;
-    // if (validation === 0) setReadyToDispatch(true);
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    // let validation = 0;
-    // for (let atribute of Object.keys(input)) {
-    //   if (input[atribute].length === 0) validation++;
-    // }
-    // if (validation === 0) readyToDispatch = true;
-    // dispatch(findCreatedGamesByName(input.name));
-
     if (readyToDispatch === true) {
       if (!allReadyCreated) {
         dispatch(createVideogame(input));
@@ -147,7 +111,6 @@ export default function CreateVideogame() {
         setReadyToDispatch(false);
       } else alert("This videogame was all ready created");
     } else {
-      // alert("all fields must be completed");
       setInputFullfilled({ ...inputFullfilled, clicked: true });
       const errors = validationFunc(input);
       setErrors(errors);
@@ -155,10 +118,6 @@ export default function CreateVideogame() {
   };
 
   function handleDelete(id) {
-    // setInput({
-    //   ...input,
-    //   genres: input.genres?.filter((genre) => genre !== id),
-    // });
     setInput((input) => {
       const newInput = {
         ...input,
@@ -194,7 +153,6 @@ export default function CreateVideogame() {
       <div className={styles.bkg} />
       <div className={styles.container}>
         <form onSubmit={onSubmit} className={styles.form}>
-          {/* <label>Name: </label> */}
           <div className={styles.inputname}>
             <input
               className={
@@ -210,12 +168,8 @@ export default function CreateVideogame() {
                 inputFullfilled.clicked && errors.name ? errors.name : "Name"
               }
             />
-            {/* {inputFullfilled.clicked && errors.name && (
-              <p className={styles.notfulfilledLabel}>Name is required</p>
-            )} */}
           </div>
           <div className={styles.inputdate}>
-            {/* <label className={styles.label}>Realise Date: </label> */}
             <input
               className={
                 inputFullfilled.clicked && errors.realiseDate
@@ -227,14 +181,8 @@ export default function CreateVideogame() {
               onChange={handleChange}
               value={input.realiseDate}
             />
-            {/* {inputFullfilled.clicked && errors.realiseDate && (
-              <p className={styles.notfulfilledLabel}>
-                Realise Date is required
-              </p>
-            )} */}
           </div>
           <div className={styles.inputrating}>
-            {/* <label className={styles.label}>Rating: </label> */}
             <input
               className={
                 inputFullfilled.clicked && errors.rating
@@ -251,12 +199,6 @@ export default function CreateVideogame() {
                   : "Rating: 0 - 5"
               }
             />
-            {/* {inputFullfilled.clicked &&
-              errors.rating?.length > 22 && (
-                <p className={styles.notfulfilledLabel}>{errors.rating}</p>
-              ) &&
-              console.log(errors.rating)} */}
-            {/* <label>Description: </label> */}
           </div>
           <div className={styles.desc}>
             <textarea
@@ -275,12 +217,6 @@ export default function CreateVideogame() {
                   : "Description"
               }
             />
-            {/* {inputFullfilled.clicked && errors.description && (
-              <p className={styles.notfulfilledLabel}>
-                Description is required
-              </p>
-            )} */}
-            {/* <label>Background Image: </label> */}
           </div>
           <div className={styles.inputbkg}>
             <input
@@ -299,11 +235,8 @@ export default function CreateVideogame() {
                   : "Background Image"
               }
             />
-            {/* {inputFullfilled.clicked && errors.background_img && (
-              <p className={styles.notfulfilledLabel}>Background is required</p>
-            )} */}
           </div>
-          {/* <div className={styles.genres}> */}
+
           <div className={styles.sel}>
             <List
               itemToSelect="Genres"
@@ -335,11 +268,8 @@ export default function CreateVideogame() {
                 </div>
               ) : null
             )}
-            {/* {inputFullfilled.clicked && errors.genres && (
-              <p className={styles.notfulfilledLabel}>Genre is required</p>
-            )} */}
           </div>
-          {/* </div> */}
+
           <div className={styles.platform}>
             <List
               itemToSelect="Platforms"
@@ -370,9 +300,6 @@ export default function CreateVideogame() {
                 </button>
               </div>
             ))}
-            {/* {inputFullfilled.clicked && errors.platforms && (
-              <p className={styles.notfulfilledLabel}>Platform is required</p>
-            )} */}
           </div>
           <div className={styles.createbtn}>
             <button

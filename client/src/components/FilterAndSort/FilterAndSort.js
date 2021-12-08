@@ -7,12 +7,6 @@ export default function FilterAndSort({
   filterGenre,
   clicked,
 }) {
-  // const [data, setData] = useState({sortt: 'Order By', filter:'Filter By'})
-
-  // const handleChange = (event) => {
-
-  // }
-
   return (
     <div className={styles.grid}>
       <div className={styles.container}>
@@ -52,9 +46,6 @@ export default function FilterAndSort({
         </div>
       </div>
       <div className={styles.containerLi}>
-        {/* {filterGenre && genres.includes(filterGenre) && (
-          <span className={styles.gen}>Filter By Genre</span>
-        )} */}
         {filterGenre.length > 0 && (
           <span className={styles.fil}>Filter By: </span>
         )}

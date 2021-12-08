@@ -4,13 +4,11 @@ export const orderBy = (array, payload) => {
       const videogameNameA = a.name.toLowerCase();
       const videogameNameB = b.name.toLowerCase();
       if (payload === "a-z") {
-        // ordenar de la a a la z
         if (videogameNameA > videogameNameB) return 1;
         if (videogameNameA < videogameNameB) return -1;
         return 0;
       }
       if (payload === "z-a") {
-        // ordenar de z a la aa
         if (videogameNameA < videogameNameB) return 1;
         if (videogameNameA > videogameNameB) return -1;
         return 0;

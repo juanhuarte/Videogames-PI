@@ -6,12 +6,9 @@ export default function List({
   selectHandler,
   clickedSel,
 }) {
-  // htmlFor: Return the value of the for attribute of a label:
   // onInput: The oninput event occurs when an element gets user input. This event occurs when the value of an <input> or <textarea> element is changed.
   return (
     <div className={styles.content}>
-      {/* <label htmlFor=""> */}
-      {/* {itemToSelect} <br /> */}
       <select
         className={styles.select}
         name={itemToSelect}
@@ -31,8 +28,6 @@ export default function List({
           </option>
         ))}
       </select>
-      {/* <i className={styles.arrow}></i> */}
-      {/* </label> */}
     </div>
   );
 }

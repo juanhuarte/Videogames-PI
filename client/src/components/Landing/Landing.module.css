@@ -9,21 +9,14 @@
 }
 
 .container {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   position: absolute;
   top: 120px;
   right: 250px;
   left: 250px;
   bottom: 250px;
-  /* position: absolute; */
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* justify-items: center; */
-  /* justify-self: center; */
 }
 
 .label {
