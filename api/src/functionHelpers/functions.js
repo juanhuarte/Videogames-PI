@@ -85,19 +85,24 @@ const findVideogameById = async (id) => {
 };
 
 async function getGenres() {
-  const apiCall = await axios.get(
-    `https://api.rawg.io/api/genres?key=${API_KEY}`
-  );
-  let genders = apiCall.data.results.map((element) => {
-    return {
-      name: element.name,
-    };
-  });
-  genders.map((genre) => {
-    Gender.findOrCreate({
-      where: { name: genre.name },
+  try {
+    const apiCall = await axios.get(
+      `https://api.rawg.io/api/genres?key=${API_KEY}`
+    );
+    let genders = apiCall.data.results.map((element) => {
+      return {
+        name: element.name,
+      };
     });
-  });
+    // tener cuidado con la promesa del findOrCreate
+    genders.map((genre) => {
+      Gender.findOrCreate({
+        where: { name: genre.name },
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const createVideogames = async (

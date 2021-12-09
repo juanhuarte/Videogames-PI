@@ -57,6 +57,22 @@ export function getAllGenders() {
   };
 }
 
+// export function getAllGenders() {
+//   return function (dispatch) {
+//     axios
+//       .get("http://localhost:3001/genres")
+//       .then((resolve) => {
+//         dispatch({
+//           type: GET_ALL_GENDERS,
+//           payload: resolve.data,
+//         });
+//       })
+//       .catch((reject) => {
+//         console.log(reject);
+//       });
+//   };
+// }
+
 export const filterByGenre = (genre) => (dispatch) =>
   dispatch({
     type: FILTER_BY_GENRE,
@@ -64,7 +80,6 @@ export const filterByGenre = (genre) => (dispatch) =>
   });
 
 export function getVideogameDetail(id) {
-  console.log("1", id);
   return async function (dispatch) {
     try {
       const videogameDetails = await axios.get(

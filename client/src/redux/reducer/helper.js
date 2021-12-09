@@ -29,7 +29,6 @@ export const filterGenre = (arr, genre, allVideogames) => {
     let apiGames = allVideogames?.filter(
       (videogame) => typeof videogame.id === "number"
     );
-    console.log(allVideogames);
     return apiGames;
   }
   if (genre === "Created Videogames") {
