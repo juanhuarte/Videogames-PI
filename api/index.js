@@ -24,8 +24,8 @@ const { getGenres } = require("./src/functionHelpers/functions");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, async () => {
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
+  server.listen(process.env.PORT, async () => {
+    console.log("%s listening at " + process.env.PORT); // eslint-disable-line no-console
     // aca tendria que hacer el precargado de los genres
     // puedo immportar el modelo (tabla gender), llamo a la api me traigo los 19 generos, los tengo que pushear en un array que voy a tener promesas e ir creando en la base de datos cargando los generos.
 
