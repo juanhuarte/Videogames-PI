@@ -9,8 +9,8 @@ export const GET_VIDEOGAME_DETAILS = "GET_VIDEOGAME_DETAILS";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const FIND_CREATED_GAMES_BY_NAME = "FIND_CREATED_GAMES_BY_NAME";
 
-const url = "http://localhost:3001";
-//const url = ""
+//const url = "http://localhost:3001";
+const url = "https://videogames-p.herokuapp.com";
 
 export function getAllVideogames() {
   return function (dispatch) {
