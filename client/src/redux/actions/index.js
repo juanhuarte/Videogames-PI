@@ -9,9 +9,12 @@ export const GET_VIDEOGAME_DETAILS = "GET_VIDEOGAME_DETAILS";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const FIND_CREATED_GAMES_BY_NAME = "FIND_CREATED_GAMES_BY_NAME";
 
+const url = "http://localhost:3001";
+//const url = ""
+
 export function getAllVideogames() {
   return function (dispatch) {
-    return fetch("http://localhost:3001/videogames")
+    return fetch(url + "/videogames")
       .then((response) => response.json())
       .then((json) => {
         dispatch({ type: GET_ALL_VIDEOGAMES, payload: json });
@@ -21,7 +24,7 @@ export function getAllVideogames() {
 
 export function getAllVideogamesByName(name) {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/videogames?name=${name}`)
+    return fetch(url + `/videogames?name=${name}`)
       .then((response) => response.json())
       .then((json) => {
         dispatch({ type: GET_ALL_VIDEOGAMES_BY_NAME, payload: json });
@@ -46,7 +49,7 @@ export const orderVideogames = (payload) => (dispatch) =>
 export function getAllGenders() {
   return async function (dispatch) {
     try {
-      const genres = await axios.get("http://localhost:3001/genres");
+      const genres = await axios.get("/genres");
       dispatch({
         type: GET_ALL_GENDERS,
         payload: genres.data,
@@ -82,9 +85,7 @@ export const filterByGenre = (genre) => (dispatch) =>
 export function getVideogameDetail(id) {
   return async function (dispatch) {
     try {
-      const videogameDetails = await axios.get(
-        `http://localhost:3001/videogame/${id}`
-      );
+      const videogameDetails = await axios.get(`/videogame/${id}`);
       dispatch({
         type: GET_VIDEOGAME_DETAILS,
         payload: videogameDetails.data,
@@ -106,18 +107,15 @@ export function createVideogame({
 }) {
   return async function (dispatch) {
     try {
-      const postVideogame = await axios.post(
-        "http://localhost:3001/videogame",
-        {
-          name,
-          realiseDate,
-          rating,
-          description,
-          platforms,
-          genres,
-          background_img,
-        }
-      );
+      const postVideogame = await axios.post("/videogame", {
+        name,
+        realiseDate,
+        rating,
+        description,
+        platforms,
+        genres,
+        background_img,
+      });
       return postVideogame;
     } catch (error) {
       console.log(error);
